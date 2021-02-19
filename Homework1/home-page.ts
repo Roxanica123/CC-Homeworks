@@ -18,9 +18,8 @@ export class HomePage {
         try { locations = HomePage.extract_locations(response_iss, response_twitter); }
         catch { return new ServerError("Something went wrong :(. Could not extract locations"); }
 
-        const bing_response = await HomePage.get_bing_route(locations);
-        console.log(bing_response)
-        return new Ok("?")
+        const bing_response = await HomePage.get_bing_map(locations)
+        return new Ok(bing_response.data)
     }
     private static async get_tweet_location(): Promise<ResponseObject> {
         const tweetQuery: string = "?ids=1362823946148732931&tweet.fields=geo&expansions=geo.place_id&place.fields=geo,contained_within";
@@ -31,12 +30,14 @@ export class HomePage {
         const response_twitter: ResponseObject = await new MyRequest("GET", "api.twitter.com", path, header, "https").send();
         return response_twitter
     }
-
-    private static async get_bing_route(location: any): Promise<ResponseObject> {
-        const bing_query: string = `?wp.0=${location.tweet.latitude},${location.tweet.longitude}&wp.1=${location.iss.latitude},${location.iss.longitude}&ra=regionTravelSummary&key=${bing_key}`
-        const path: string = "/REST/V1/Routes" + bing_query;
+    private static async get_bing_map(location: any): Promise<ResponseObject> {
+        const bing_query: string = `?mapSize=500,500&pp=${location.iss.latitude},${location.iss.longitude};21;AA&pp=${location.tweet.latitude},${location.tweet.longitude};;AB&mapMetadata=1&o=json&key=${bing_key}`
+        const center_latitude = (location.iss.latitude + location.tweet.latitude) / 2.0;
+        const center_longiture = (location.iss.longitude + location.tweet.longitude) / 2.0;
+        const path = `/REST/V1/Imagery/Map/Road/${center_latitude},${center_longiture}/4` + bing_query;
         const response_bing: ResponseObject = await new MyRequest("GET", "dev.virtualearth.net", path).send()
         return response_bing;
+
     }
 
     private static extract_locations(response_iss: ResponseObject, response_twitter: ResponseObject) {
