@@ -1,14 +1,18 @@
+import { throws } from "assert";
 import * as  http from "http";
+import * as  https from "https";
 
 export class MyRequest {
     private options: object;
-    constructor(method: "GET" | "POST" | "PUT" | "DELETE", host: string, path: string, headers: object | null = null) {
+    private http;
+    constructor(method: "GET" | "POST" | "PUT" | "DELETE", host: string, path: string, headers: object | null = null, protocol: "http" | "https" = "http") {
+        this.http = protocol === "http" ? http : https
         this.options = { method: method, host: host, path: path, headers: headers }
     }
     send(): Promise<object> {
         return new Promise((resolve, reject) => {
             let data = ""
-            const request = http.request(this.options, res => {
+            const request = this.http.request(this.options, res => {
                 res.on('data', d => {
                     data += d;
                 })
