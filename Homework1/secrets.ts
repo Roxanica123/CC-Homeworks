@@ -1,1 +1,2 @@
-export const twitter_bearer_token: string = "AAAAAAAAAAAAAAAAAAAAAJSmKQEAAAAAWtqYdL05KM8NBGaC5fguHwKa50o%3DV1qyDUpMCMyoIMpdGdk1vHqDJt2DrDvTJXeE5DStOc0ifZitgW"  
+export const twitter_bearer_token: string = "AAAAAAAAAAAAAAAAAAAAAJSmKQEAAAAAWtqYdL05KM8NBGaC5fguHwKa50o%3DV1qyDUpMCMyoIMpdGdk1vHqDJt2DrDvTJXeE5DStOc0ifZitgW"
+export const bing_key: string = "AqwpXNZJig96mYs4APRNwuLaqZXViVomDbzzpukxn3UTjUsg5R_rdqF3-W3pN_hn"

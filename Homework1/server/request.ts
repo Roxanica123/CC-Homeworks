@@ -1,6 +1,7 @@
 import { throws } from "assert";
 import * as  http from "http";
 import * as  https from "https";
+import { ResponseObject } from "./request_response_object";
 
 export class MyRequest {
     private options: object;
@@ -9,7 +10,7 @@ export class MyRequest {
         this.http = protocol === "http" ? http : https
         this.options = { method: method, host: host, path: path, headers: headers }
     }
-    send(): Promise<object> {
+    send(): Promise<ResponseObject> {
         return new Promise((resolve, reject) => {
             let data = ""
             const request = this.http.request(this.options, res => {
@@ -20,6 +21,7 @@ export class MyRequest {
                     resolve({
                         data: data,
                         code: res.statusCode,
+                        is_error:false
                     });
                 })
                 res.on('error', err => {
