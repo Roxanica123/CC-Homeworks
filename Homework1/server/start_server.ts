@@ -5,7 +5,6 @@ import { Handler } from "../routing";
 
 export function start(app: Application):void{
     Handler.init(app.routes);
-    
     const server: http.Server = http.createServer((req: http.IncomingMessage, res: http.ServerResponse) => {
         Server.handle(req, res);
     });
