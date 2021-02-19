@@ -21,7 +21,7 @@ export class Handler {
     public async handleRequest(request: IncomingMessage): Promise<HttpActionResult> {
         const baseURL: string = 'http://' + request.headers.host + '/';
         const path: string = new URL(request.url ? request.url : "", baseURL).pathname;
-        const routeHandler = this.routes.find(routeHandler => routeHandler.route = path);
+        const routeHandler = this.routes.find(routeHandler => routeHandler.route === path);
         if(routeHandler === undefined)
             return new BadRequest("Nothing to see here");
         return await this.execute(routeHandler, request);
