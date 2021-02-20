@@ -78,3 +78,5 @@
 {"request":{"method":"GET","url":"/favicon.ico"},"response":{"statusCode":400,"body":"Nothing to see here"},"timestamp":1613829964086,"latency":1}
 {"request":{"method":"GET","url":"/home"},"response":{"statusCode":200,"body":"{\"location\":{\"tweet\":{\"longitude\":27.575072050094604,\"latitude\":47.17410007862509},\"iss\":{\"longitude\":-40.9715,\"latitude\":47.0045}},\"tweet_id\":\"1362823946148732931\"}"},"timestamp":1613829968631,"latency":441}
 {"request":{"method":"GET","url":"/favicon.ico"},"response":{"statusCode":400,"body":"Nothing to see here"},"timestamp":1613829969451,"latency":0}
+{"request":{"method":"GET","url":"/home"},"response":{"statusCode":200,"body":"{\"location\":{\"tweet\":{\"longitude\":27.575072050094604,\"latitude\":47.17410007862509},\"iss\":{\"longitude\":-19.7023,\"latitude\":36.3026}},\"tweet_id\":\"1362823946148732931\"}"},"timestamp":1613830275414,"latency":408}
+{"request":{"method":"GET","url":"/favicon.ico"},"response":{"statusCode":400,"body":"Nothing to see here"},"timestamp":1613830275554,"latency":0}
