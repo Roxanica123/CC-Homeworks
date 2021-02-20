@@ -1,7 +1,6 @@
-import { throws } from "assert";
 import * as  http from "http";
 import * as  https from "https";
-import { ResponseObject } from "./request_response_object";
+import { ResponseObject } from ".";
 
 export class MyRequest {
     private options: object;

@@ -1,4 +1,4 @@
-import { Ok, ServerError } from "./action_results";
+import { Ok, ServerError } from "../action_results";
 import lineByLine from 'n-readlines';
 
 

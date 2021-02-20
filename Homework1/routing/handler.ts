@@ -1,6 +1,6 @@
 import { IncomingMessage } from "http";
 import { BadRequest, HttpActionResult } from "../action_results";
-import { RouteHandler } from "./route-handler";
+import { RouteHandler } from ".";
 
 export class Handler {
     private static handlerInstance: Handler;

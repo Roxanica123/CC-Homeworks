@@ -1,10 +1,8 @@
-import { Ok } from "./action_results"
-import { HomePage } from "./home-page";
-import { MetricsPage } from "./metrics-page";
+import { HomePage, MetricsPage } from "./pages";
 import { start } from "./server";
 
 export * from "./server"
-export * from "./application"
+export * from "./server/application"
 
 const app = {
     routes: [

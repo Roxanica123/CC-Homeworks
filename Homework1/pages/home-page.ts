@@ -1,8 +1,6 @@
-import { Ok, ServerError } from "./action_results";
-import { MyRequest } from "./server/request";
-import { azure_key, twitter_bearer_token } from "./secrets";
-import { ResponseObject } from "./server/request_response_object";
-
+import { Ok, ServerError } from "../action_results";
+import { MyRequest, ResponseObject } from "../server";
+import { azure_key, twitter_bearer_token } from "../secrets";
 
 export class HomePage {
     static async get_response() {
