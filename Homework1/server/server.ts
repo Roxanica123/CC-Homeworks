@@ -24,6 +24,6 @@ export class Server {
             timestamp: timestamp,
             latency: (timestamp - startTime)
         }
-        Server.log_stream.write("log:" + JSON.stringify(log) + "\n");
+        Server.log_stream.write(JSON.stringify(log) + "\n");
     }
 }

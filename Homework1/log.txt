@@ -1,2 +1,76 @@
-log:{"request":{"method":"GET","url":"/home"},"response":{"statusCode":200,"body":"{\"location\":{\"tweet\":{\"longitude\":27.575072050094604,\"latitude\":47.17410007862509},\"iss\":{\"longitude\":-42.3579,\"latitude\":51.4832}},\"tweet_id\":\"1362823946148732931\"}"},"timestamp":1613824123159,"latency":393}
-log:{"request":{"method":"GET","url":"/favicon.ico"},"response":{"statusCode":400,"body":"Nothing to see here"},"timestamp":1613824123315,"latency":0}
+{"request":{"method":"GET","url":"/home"},"response":{"statusCode":200,"body":"{\"location\":{\"tweet\":{\"longitude\":27.575072050094604,\"latitude\":47.17410007862509},\"iss\":{\"longitude\":43.0474,\"latitude\":-9.4447}},\"tweet_id\":\"1362823946148732931\"}"},"timestamp":1613825647422,"latency":439}
+{"request":{"method":"GET","url":"/favicon.ico"},"response":{"statusCode":400,"body":"Nothing to see here"},"timestamp":1613825647562,"latency":1}
+{"request":{"method":"GET","url":"/metrics"},"response":{"statusCode":200,"body":"lalal"},"timestamp":1613825658911,"latency":6}
+{"request":{"method":"GET","url":"/favicon.ico"},"response":{"statusCode":400,"body":"Nothing to see here"},"timestamp":1613825659028,"latency":0}
+{"request":{"method":"GET","url":"/metrics"},"response":{"statusCode":200,"body":"lalal"},"timestamp":1613825713570,"latency":10}
+{"request":{"method":"GET","url":"/favicon.ico"},"response":{"statusCode":400,"body":"Nothing to see here"},"timestamp":1613825713709,"latency":0}
+{"request":{"method":"GET","url":"/metrics"},"response":{"statusCode":200,"body":"lalal"},"timestamp":1613825742068,"latency":10}
+{"request":{"method":"GET","url":"/favicon.ico"},"response":{"statusCode":400,"body":"Nothing to see here"},"timestamp":1613825742211,"latency":0}
+{"request":{"method":"GET","url":"/metrics"},"response":{"statusCode":200,"body":"lalal"},"timestamp":1613825781741,"latency":8}
+{"request":{"method":"GET","url":"/favicon.ico"},"response":{"statusCode":400,"body":"Nothing to see here"},"timestamp":1613825781884,"latency":1}
+{"request":{"method":"GET","url":"/metrics"},"response":{"statusCode":200,"body":"lalal"},"timestamp":1613825811720,"latency":10}
+{"request":{"method":"GET","url":"/favicon.ico"},"response":{"statusCode":400,"body":"Nothing to see here"},"timestamp":1613825811868,"latency":0}
+{"request":{"method":"GET","url":"/metrics"},"response":{"statusCode":200,"body":"lalal"},"timestamp":1613826849673,"latency":20}
+{"request":{"method":"GET","url":"/favicon.ico"},"response":{"statusCode":400,"body":"Nothing to see here"},"timestamp":1613826849815,"latency":1}
+{"request":{"method":"GET","url":"/metrics"},"response":{"statusCode":200,"body":"{\"per_request_metrics\":{},\"latency\":506,\"number\":14}"},"timestamp":1613829076708,"latency":11}
+{"request":{"method":"GET","url":"/favicon.ico"},"response":{"statusCode":400,"body":"Nothing to see here"},"timestamp":1613829076850,"latency":0}
+{"request":{"method":"GET","url":"/metrics"},"response":{"statusCode":200,"body":"{\"per_request_metrics\":{\"GET /home\":{\"number\":1,\"latency\":439},\"GET /favicon.ico\":{\"number\":8,\"latency\":3},\"GET /metrics\":{\"number\":7,\"latency\":75}},\"latency\":517,\"number\":16}"},"timestamp":1613829241444,"latency":11}
+{"request":{"method":"GET","url":"/favicon.ico"},"response":{"statusCode":400,"body":"Nothing to see here"},"timestamp":1613829241619,"latency":1}
+{"request":{"method":"GET","url":"/"},"response":{"statusCode":400,"body":"Nothing to see here"},"timestamp":1613829344137,"latency":4}
+{"request":{"method":"GET","url":"/metrics"},"response":{"statusCode":200,"body":"{}"},"timestamp":1613829401033,"latency":9}
+{"request":{"method":"GET","url":"/favicon.ico"},"response":{"statusCode":400,"body":"Nothing to see here"},"timestamp":1613829401178,"latency":1}
+{"request":{"method":"GET","url":"/metrics"},"response":{"statusCode":200,"body":"{}"},"timestamp":1613829405093,"latency":0}
+{"request":{"method":"GET","url":"/favicon.ico"},"response":{"statusCode":400,"body":"Nothing to see here"},"timestamp":1613829405192,"latency":0}
+{"request":{"method":"GET","url":"/metrics"},"response":{"statusCode":200,"body":"{}"},"timestamp":1613829406028,"latency":0}
+{"request":{"method":"GET","url":"/favicon.ico"},"response":{"statusCode":400,"body":"Nothing to see here"},"timestamp":1613829406124,"latency":0}
+{"request":{"method":"GET","url":"/metrics"},"response":{"statusCode":200,"body":"{}"},"timestamp":1613829406688,"latency":0}
+{"request":{"method":"GET","url":"/favicon.ico"},"response":{"statusCode":400,"body":"Nothing to see here"},"timestamp":1613829406780,"latency":0}
+{"request":{"method":"GET","url":"/metrics"},"response":{"statusCode":200,"body":"{\"per_request_metrics\":{\"GET /home\":{\"number\":1,\"latency\":439},\"GET /favicon.ico\":{\"number\":13,\"latency\":5},\"GET /metrics\":{\"number\":12,\"latency\":95},\"GET /\":{\"number\":1,\"latency\":4}},\"latency\":543,\"number\":27}"},"timestamp":1613829430434,"latency":8}
+{"request":{"method":"GET","url":"/favicon.ico"},"response":{"statusCode":400,"body":"Nothing to see here"},"timestamp":1613829430574,"latency":1}
+{"request":{"method":"GET","url":"/metrics"},"response":{"statusCode":200,"body":"{\"per_request_metrics\":{},\"latency\":0,\"number\":0}"},"timestamp":1613829431362,"latency":1}
+{"request":{"method":"GET","url":"/favicon.ico"},"response":{"statusCode":400,"body":"Nothing to see here"},"timestamp":1613829431459,"latency":1}
+{"request":{"method":"GET","url":"/metrics"},"response":{"statusCode":200,"body":"{\"per_request_metrics\":{},\"latency\":0,\"number\":0}"},"timestamp":1613829432965,"latency":1}
+{"request":{"method":"GET","url":"/favicon.ico"},"response":{"statusCode":400,"body":"Nothing to see here"},"timestamp":1613829433060,"latency":0}
+{"request":{"method":"GET","url":"/metrics"},"response":{"statusCode":200,"body":"{\"per_request_metrics\":{},\"latency\":0,\"number\":0}"},"timestamp":1613829433716,"latency":0}
+{"request":{"method":"GET","url":"/favicon.ico"},"response":{"statusCode":400,"body":"Nothing to see here"},"timestamp":1613829433814,"latency":0}
+{"request":{"method":"GET","url":"/metrics"},"response":{"statusCode":200,"body":"{\"per_request_metrics\":{},\"latency\":0,\"number\":0}"},"timestamp":1613829434169,"latency":0}
+{"request":{"method":"GET","url":"/favicon.ico"},"response":{"statusCode":400,"body":"Nothing to see here"},"timestamp":1613829434261,"latency":0}
+{"request":{"method":"GET","url":"/metrics"},"response":{"statusCode":200,"body":"{\"per_request_metrics\":{},\"latency\":0,\"number\":0}"},"timestamp":1613829434342,"latency":0}
+{"request":{"method":"GET","url":"/favicon.ico"},"response":{"statusCode":400,"body":"Nothing to see here"},"timestamp":1613829434438,"latency":1}
+{"request":{"method":"GET","url":"/metrics"},"response":{"statusCode":200,"body":"{\"per_request_metrics\":{},\"latency\":0,\"number\":0}"},"timestamp":1613829434555,"latency":0}
+{"request":{"method":"GET","url":"/favicon.ico"},"response":{"statusCode":400,"body":"Nothing to see here"},"timestamp":1613829434667,"latency":1}
+{"request":{"method":"GET","url":"/metrics"},"response":{"statusCode":200,"body":"{\"per_request_metrics\":{},\"latency\":0,\"number\":0}"},"timestamp":1613829436066,"latency":1}
+{"request":{"method":"GET","url":"/metrics"},"response":{"statusCode":200,"body":"{\"per_request_metrics\":{},\"latency\":0,\"number\":0}"},"timestamp":1613829436373,"latency":1}
+{"request":{"method":"GET","url":"/favicon.ico"},"response":{"statusCode":400,"body":"Nothing to see here"},"timestamp":1613829436485,"latency":1}
+{"request":{"method":"GET","url":"/metrics"},"response":{"statusCode":200,"body":"{\"per_request_metrics\":{},\"latency\":0,\"number\":0}"},"timestamp":1613829436537,"latency":0}
+{"request":{"method":"GET","url":"/favicon.ico"},"response":{"statusCode":400,"body":"Nothing to see here"},"timestamp":1613829436644,"latency":0}
+{"request":{"method":"GET","url":"/metrics"},"response":{"statusCode":200,"body":"{\"per_request_metrics\":{},\"latency\":0,\"number\":0}"},"timestamp":1613829436701,"latency":1}
+{"request":{"method":"GET","url":"/favicon.ico"},"response":{"statusCode":400,"body":"Nothing to see here"},"timestamp":1613829436800,"latency":0}
+{"request":{"method":"GET","url":"/metrics"},"response":{"statusCode":200,"body":"{\"per_request_metrics\":{},\"latency\":0,\"number\":0}"},"timestamp":1613829436880,"latency":0}
+{"request":{"method":"GET","url":"/favicon.ico"},"response":{"statusCode":400,"body":"Nothing to see here"},"timestamp":1613829436980,"latency":0}
+{"request":{"method":"GET","url":"/metrics"},"response":{"statusCode":200,"body":"{\"per_request_metrics\":{},\"latency\":0,\"number\":0}"},"timestamp":1613829437053,"latency":0}
+{"request":{"method":"GET","url":"/favicon.ico"},"response":{"statusCode":400,"body":"Nothing to see here"},"timestamp":1613829437153,"latency":0}
+{"request":{"method":"GET","url":"/metrics"},"response":{"statusCode":200,"body":"{\"per_request_metrics\":{},\"latency\":0,\"number\":0}"},"timestamp":1613829437205,"latency":0}
+{"request":{"method":"GET","url":"/favicon.ico"},"response":{"statusCode":400,"body":"Nothing to see here"},"timestamp":1613829437303,"latency":0}
+{"request":{"method":"GET","url":"/metrics"},"response":{"statusCode":200,"body":"{\"per_request_metrics\":{},\"latency\":0,\"number\":0}"},"timestamp":1613829437378,"latency":0}
+{"request":{"method":"GET","url":"/favicon.ico"},"response":{"statusCode":400,"body":"Nothing to see here"},"timestamp":1613829437473,"latency":1}
+{"request":{"method":"GET","url":"/metrics"},"response":{"statusCode":200,"body":"{\"per_request_metrics\":{},\"latency\":0,\"number\":0}"},"timestamp":1613829437595,"latency":0}
+{"request":{"method":"GET","url":"/favicon.ico"},"response":{"statusCode":400,"body":"Nothing to see here"},"timestamp":1613829437692,"latency":0}
+{"request":{"method":"GET","url":"/metrics"},"response":{"statusCode":200,"body":"{\"per_request_metrics\":{},\"latency\":0,\"number\":0}"},"timestamp":1613829444147,"latency":1}
+{"request":{"method":"GET","url":"/favicon.ico"},"response":{"statusCode":400,"body":"Nothing to see here"},"timestamp":1613829444243,"latency":0}
+{"request":{"method":"GET","url":"/metrics"},"response":{"statusCode":200,"body":"{\"per_request_metrics\":{\"GET /home\":{\"number\":1,\"latency\":439},\"GET /favicon.ico\":{\"number\":29,\"latency\":11},\"GET /metrics\":{\"number\":29,\"latency\":109},\"GET /\":{\"number\":1,\"latency\":4}},\"latency\":563,\"number\":60}"},"timestamp":1613829532977,"latency":11}
+{"request":{"method":"GET","url":"/favicon.ico"},"response":{"statusCode":400,"body":"Nothing to see here"},"timestamp":1613829533119,"latency":0}
+{"request":{"method":"GET","url":"/metrics"},"response":{"statusCode":200,"body":"{\"per_request_metrics\":{\"GET /home\":{\"number\":1,\"latency\":439},\"GET /favicon.ico\":{\"number\":30,\"latency\":11},\"GET /metrics\":{\"number\":30,\"latency\":120},\"GET /\":{\"number\":1,\"latency\":4}},\"latency\":574,\"number\":62}"},"timestamp":1613829533735,"latency":5}
+{"request":{"method":"GET","url":"/favicon.ico"},"response":{"statusCode":400,"body":"Nothing to see here"},"timestamp":1613829533834,"latency":1}
+{"request":{"method":"GET","url":"/metrics"},"response":{"statusCode":200,"body":"{\"per_request_metrics\":{\"GET /home\":{\"number\":1,\"latency\":439},\"GET /favicon.ico\":{\"number\":31,\"latency\":12},\"GET /metrics\":{\"number\":31,\"latency\":125},\"GET /\":{\"number\":1,\"latency\":4}},\"latency\":580,\"number\":64}"},"timestamp":1613829534197,"latency":2}
+{"request":{"method":"GET","url":"/favicon.ico"},"response":{"statusCode":400,"body":"Nothing to see here"},"timestamp":1613829534292,"latency":0}
+{"request":{"method":"GET","url":"/metrics"},"response":{"statusCode":200,"body":"{\"per_request_metrics\":{\"GET /home\":{\"number\":1,\"latency\":439},\"GET /favicon.ico\":{\"number\":32,\"latency\":12},\"GET /metrics\":{\"number\":32,\"latency\":127},\"GET /\":{\"number\":1,\"latency\":4}},\"latency\":582,\"number\":66}"},"timestamp":1613829534355,"latency":3}
+{"request":{"method":"GET","url":"/favicon.ico"},"response":{"statusCode":400,"body":"Nothing to see here"},"timestamp":1613829534469,"latency":0}
+{"request":{"method":"GET","url":"/metrics"},"response":{"statusCode":200,"body":"{\"per_request_metrics\":{\"GET /home\":{\"number\":1,\"latency\":439},\"GET /favicon.ico\":{\"number\":33,\"latency\":12},\"GET /metrics\":{\"number\":33,\"latency\":130},\"GET /\":{\"number\":1,\"latency\":4}},\"latency\":585,\"number\":68}"},"timestamp":1613829536328,"latency":3}
+{"request":{"method":"GET","url":"/favicon.ico"},"response":{"statusCode":400,"body":"Nothing to see here"},"timestamp":1613829536433,"latency":1}
+{"request":{"method":"GET","url":"/metrics"},"response":{"statusCode":200,"body":"{\"per_request_metrics\":{\"GET /home\":{\"number\":1,\"latency\":439},\"GET /favicon.ico\":{\"number\":34,\"latency\":13},\"GET /metrics\":{\"number\":34,\"latency\":133},\"GET /\":{\"number\":1,\"latency\":4}},\"latency\":589,\"number\":70}"},"timestamp":1613829537845,"latency":3}
+{"request":{"method":"GET","url":"/favicon.ico"},"response":{"statusCode":400,"body":"Nothing to see here"},"timestamp":1613829537943,"latency":1}
+{"request":{"method":"GET","url":"/metrics"},"response":{"statusCode":200,"body":"{\"per_request_metrics\":{\"GET /home\":{\"number\":1,\"latency\":439},\"GET /favicon.ico\":{\"number\":35,\"latency\":14},\"GET /metrics\":{\"number\":35,\"latency\":136},\"GET /\":{\"number\":1,\"latency\":4}},\"latency\":593,\"number\":72}"},"timestamp":1613829540443,"latency":3}
+{"request":{"method":"GET","url":"/favicon.ico"},"response":{"statusCode":400,"body":"Nothing to see here"},"timestamp":1613829540542,"latency":0}
+{"request":{"method":"GET","url":"/metrics"},"response":{"statusCode":200,"body":"{\"per_request_metrics\":{\"GET /home\":{\"number\":1,\"latency\":439},\"GET /favicon.ico\":{\"number\":36,\"latency\":14},\"GET /metrics\":{\"number\":36,\"latency\":139},\"GET /\":{\"number\":1,\"latency\":4}},\"latency\":596,\"number\":74}"},"timestamp":1613829542360,"latency":4}
+{"request":{"method":"GET","url":"/favicon.ico"},"response":{"statusCode":400,"body":"Nothing to see here"},"timestamp":1613829542906,"latency":1}
