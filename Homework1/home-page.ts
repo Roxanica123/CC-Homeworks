@@ -1,25 +1,29 @@
 import { Ok, ServerError } from "./action_results";
 import { MyRequest } from "./server/request";
-import { bing_key, twitter_bearer_token } from "./secrets";
+import { azure_key, twitter_bearer_token } from "./secrets";
 import { ResponseObject } from "./server/request_response_object";
 
 
 export class HomePage {
     static async get_response() {
-        const response_iss = await new MyRequest("GET", "api.open-notify.org", "/iss-now.json").send();
-        if (response_iss.is_error === true || response_iss.code !== 200)
-            return new ServerError("Something went wrong :(. Could not get the iss location");
-
-        const response_twitter = await HomePage.get_tweet_location();
-        if (response_twitter.is_error === true || response_twitter.code !== 200)
-            return new ServerError("Something went wrong :(. Could not get the tweet location");
+        const response_iss = new MyRequest("GET", "api.open-notify.org", "/iss-now.json").send();
+        const response_twitter = HomePage.get_tweet_location();
 
         let locations = {}
-        try { locations = HomePage.extract_locations(response_iss, response_twitter); }
-        catch { return new ServerError("Something went wrong :(. Could not extract locations"); }
+        let tweeit_id = {}
+        try {
+            locations = HomePage.extract_locations(await response_iss, await response_twitter);
+            tweeit_id = HomePage.extract_tweet_id(await response_twitter);
+        }
+        catch { return new ServerError("Something went wrong :(. Could not extract locations or tweet id"); }
 
-        const bing_response = await HomePage.get_bing_map(locations)
-        return new Ok(bing_response.data)
+        const response = { location: locations, tweet_id: tweeit_id }
+        /*const response_azure = await HomePage.get_azure_distance(locations)
+        if (response_azure.is_error === true || response_azure.code !== 200)
+            return new ServerError("Something went wrong :(. Could not get distance");
+        */
+
+        return new Ok(JSON.stringify(response))
     }
     private static async get_tweet_location(): Promise<ResponseObject> {
         const tweetQuery: string = "?ids=1362823946148732931&tweet.fields=geo&expansions=geo.place_id&place.fields=geo,contained_within";
@@ -30,12 +34,10 @@ export class HomePage {
         const response_twitter: ResponseObject = await new MyRequest("GET", "api.twitter.com", path, header, "https").send();
         return response_twitter
     }
-    private static async get_bing_map(location: any): Promise<ResponseObject> {
-        const bing_query: string = `?mapSize=500,500&pp=${location.iss.latitude},${location.iss.longitude};21;AA&pp=${location.tweet.latitude},${location.tweet.longitude};;AB&mapMetadata=1&o=json&key=${bing_key}`
-        const center_latitude = (location.iss.latitude + location.tweet.latitude) / 2.0;
-        const center_longiture = (location.iss.longitude + location.tweet.longitude) / 2.0;
-        const path = `/REST/V1/Imagery/Map/Road/${center_latitude},${center_longiture}/4` + bing_query;
-        const response_bing: ResponseObject = await new MyRequest("GET", "dev.virtualearth.net", path).send()
+    private static async get_azure_distance(location: any): Promise<ResponseObject> {
+        const azure_query: string = `?&subscription-key=${azure_key}&api-version=1.0&query=${location.iss.latitude},${location.iss.longitude}:${location.tweet.latitude},${location.tweet.longitude}`
+        const path = "/spatial/greatCircleDistance/json" + azure_query;
+        const response_bing: ResponseObject = await new MyRequest("GET", "atlas.microsoft.com", path, null, "https").send()
         return response_bing;
 
     }
@@ -50,5 +52,11 @@ export class HomePage {
         const iss_location_obj = iss_data.iss_position;
         const iss_location = { longitude: parseFloat(iss_location_obj.longitude), latitude: parseFloat(iss_location_obj.latitude) }
         return { tweet: tweet_location, iss: iss_location }
+    }
+
+    private static extract_tweet_id(response_twitter: ResponseObject): string {
+        const tweet_data = JSON.parse(response_twitter.data);
+        const tweet_id = tweet_data.data[0].id;
+        return tweet_id;
     }
 }
