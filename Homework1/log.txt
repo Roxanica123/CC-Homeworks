@@ -1,0 +1,2 @@
+log:{"request":{"method":"GET","url":"/home"},"response":{"statusCode":200,"body":"{\"location\":{\"tweet\":{\"longitude\":27.575072050094604,\"latitude\":47.17410007862509},\"iss\":{\"longitude\":-42.3579,\"latitude\":51.4832}},\"tweet_id\":\"1362823946148732931\"}"},"timestamp":1613824123159,"latency":393}
+log:{"request":{"method":"GET","url":"/favicon.ico"},"response":{"statusCode":400,"body":"Nothing to see here"},"timestamp":1613824123315,"latency":0}
