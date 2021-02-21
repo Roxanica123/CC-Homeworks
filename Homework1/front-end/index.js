@@ -64,4 +64,4 @@ function load_map(data) {
 
 }
 
-load_map(mock_data)
+load_data()
