@@ -10,25 +10,26 @@ function drawCharts(metrics) {
     const data_json = JSON.parse(metrics);
 
     console.log(data_json);
+    document.querySelector("p").innerText = 
+    `There were a total number of ${data_json.number} with an average latency of ${data_json.latency/data_json.number}`;
     const rows_number = Object.keys(data_json.per_request_metrics).map(key => [key, data_json.per_request_metrics[key].number]);
-    const rows_latency = Object.keys(data_json.per_request_metrics).map(key => [key, data_json.per_request_metrics[key].latency/data_json.per_request_metrics[key].number]);
+    const rows_latency = Object.keys(data_json.per_request_metrics).map(key => [key, data_json.per_request_metrics[key].latency / data_json.per_request_metrics[key].number]);
 
-        // Create the data table.
+    // Create the data table.
     var data = new google.visualization.DataTable();
     data.addColumn('string', 'Requests');
-    data.addColumn('number', 'Routes');
+    data.addColumn('number', 'Number');
     data.addRows(rows_number);
 
 
     var data_latency = new google.visualization.DataTable();
     data_latency.addColumn('string', 'Requests');
-    data_latency.addColumn('number', 'Routes');
+    data_latency.addColumn('number', 'Lantency');
     data_latency.addRows(rows_latency);
     // Set chart options
     var options = {
-        'title': 'Requests distribution',
-        'width': 400,
-        'height': 300
+        'width': 500,
+        'height': 500
     };
 
     // Instantiate and draw our chart, passing in some options.
