@@ -15,11 +15,12 @@ export class HomePage {
         }
         catch { return new ServerError("Something went wrong :(. Could not extract locations or tweet id"); }
 
-        const response = { location: locations, tweet_id: tweeit_id }
-        /*const response_azure = await HomePage.get_azure_distance(locations)
+        //const response = { location: locations, tweet_id: tweeit_id }
+        const response_azure = await HomePage.get_azure_distance(locations)
         if (response_azure.is_error === true || response_azure.code !== 200)
             return new ServerError("Something went wrong :(. Could not get distance");
-        */
+        const response = { map_info: JSON.parse(response_azure.data), tweet_id: tweeit_id }
+        
 
         return new Ok(JSON.stringify(response))
     }
