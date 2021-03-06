@@ -11,6 +11,9 @@ export class Server {
         const response: HttpActionResult = await Handler.getInstance().handleRequest(req);
         res.setHeader("Access-Control-Allow-Origin", "*");
         res.statusCode = response.statusCode;
+        if(res.statusCode == 201){
+            res.setHeader("Location", req.url+"/"+response.redirectLocation)
+        }
         res.on('finish', () => {
             Server.writeLog(req, response, startTime, Date.now())
         })

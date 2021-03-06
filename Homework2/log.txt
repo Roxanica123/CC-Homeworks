@@ -10,3 +10,19 @@
 {"request":{"method":"GET","url":"/artists"},"response":{"statusCode":200,"body":"{}"},"timestamp":1615040255017,"latency":8}
 {"request":{"method":"GET","url":"/artists"},"response":{"statusCode":200,"body":"{}"},"timestamp":1615040271450,"latency":54}
 {"request":{"method":"GET","url":"/artists"},"response":{"statusCode":200,"body":"[{\"_id\":\"60438e4129820d649726129f\",\"name\":\"Ariana Grande\",\"genres\":[\"Pop\",\"R&B\",\"Trap\"]}]"},"timestamp":1615040288826,"latency":50}
+{"request":{"method":"GET","url":"/artists"},"response":{"statusCode":200,"body":"[{\"_id\":\"60438e4129820d649726129f\",\"name\":\"Ariana Grande\",\"genres\":[\"Pop\",\"R&B\",\"Trap\"]}]"},"timestamp":1615043728127,"latency":46}
+{"request":{"method":"POST","url":"/artists"},"response":{"statusCode":500,"body":"Something went wrong"},"timestamp":1615043752962,"latency":2}
+{"request":{"method":"POST","url":"/artists"},"response":{"statusCode":500,"body":"Something went wrong"},"timestamp":1615043801996,"latency":8}
+{"request":{"method":"POST","url":"/artists"},"response":{"statusCode":500,"body":"Something went wrong"},"timestamp":1615043999339,"latency":8}
+{"request":{"method":"POST","url":"/artists"},"response":{"statusCode":500,"body":"Something went wrong"},"timestamp":1615044063570,"latency":9}
+{"request":{"method":"POST","url":"/artists"},"response":{"statusCode":500,"body":"Something went wrong"},"timestamp":1615044091028,"latency":62}
+{"request":{"method":"POST","url":"/artists"},"response":{"statusCode":500,"body":"Something went wrong"},"timestamp":1615044162687,"latency":95}
+{"request":{"method":"POST","url":"/artists"},"response":{"statusCode":500,"body":"Something went wrong"},"timestamp":1615044202246,"latency":70}
+{"request":{"method":"POST","url":"/artists"},"response":{"statusCode":200,"body":"\"60439e8591b2ed6180a11cc2\""},"timestamp":1615044229134,"latency":60}
+{"request":{"method":"GET","url":"/"},"response":{"statusCode":400,"body":"Nothing to see here"},"timestamp":1615044383333,"latency":0}
+{"request":{"method":"POST","url":"/artists"},"response":{"statusCode":201,"body":"{}"},"timestamp":1615045041221,"latency":57}
+{"request":{"method":"POST","url":"/artists"},"response":{"statusCode":400,"body":"Invalid artist body"},"timestamp":1615045615652,"latency":2}
+{"request":{"method":"GET","url":"/artists"},"response":{"statusCode":200,"body":"[{\"_id\":\"60438e4129820d649726129f\",\"name\":\"Ariana Grande\",\"genres\":[\"Pop\",\"R&B\",\"Trap\"]},{\"_id\":\"60439ca8a38c7c129898fdda\",\"name\":\"The Weekend\",\"genres\":[\"R&B\",\"Soul\"]},{\"_id\":\"60439cd95dfd697adc2dea30\",\"name\":\"The Weekend\",\"genres\":[\"R&B\",\"Soul\"]},{\"_id\":\"60439d9fc076ef6960b8481c\",\"name\":\"The Weekend\",\"genres\":[\"R&B\",\"Soul\"]},{\"_id\":\"60439ddf99982c3b10f5e54b\",\"name\":\"The Weekend\",\"genres\":[\"R&B\",\"Soul\"]},{\"_id\":\"60439dfaefe0142dd4d28a0c\",\"name\":\"The Weekend\",\"genres\":[\"R&B\",\"Soul\"]},{\"_id\":\"60439e428f54cd6b1879cf9d\",\"name\":\"The Weekend\",\"genres\":[\"R&B\",\"Soul\"]},{\"_id\":\"60439e6a1ecedc6ac482c06e\",\"name\":\"The Weekend\",\"genres\":[\"R&B\",\"Soul\"]},{\"_id\":\"60439e8591b2ed6180a11cc2\",\"name\":\"The Weekend\",\"genres\":[\"R&B\",\"Soul\"]},{\"_id\":\"6043a1b17b664b461cdc342b\",\"name\":\"The Weekend\",\"genres\":[\"R&B\",\"Soul\"]}]"},"timestamp":1615045668378,"latency":49}
+{"request":{"method":"POST","url":"/artists"},"response":{"statusCode":400,"body":"Invalid artist body"},"timestamp":1615045794192,"latency":1}
+{"request":{"method":"POST","url":"/artists"},"response":{"statusCode":201,"body":"{}"},"timestamp":1615045913364,"latency":58}
+{"request":{"method":"POST","url":"/artists"},"response":{"statusCode":400,"body":"{\"error\":\"Cannot parse body\"}"},"timestamp":1615045931466,"latency":0}

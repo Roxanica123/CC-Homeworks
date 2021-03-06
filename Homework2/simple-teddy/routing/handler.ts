@@ -27,9 +27,23 @@ export class Handler {
         return await this.execute(routeHandler, request);
     }
     public async execute(routeHandler : RouteHandler, request:IncomingMessage): Promise<HttpActionResult>{
-        let body: string = "";
+        let bodyString: string = "";
+        let body: any = new Promise((resolve) => {
+            request.on('data', chunk => { bodyString = bodyString + chunk; });
+            request.on('end', () => {
+                let bodyJson;
+                try{
+                    bodyJson = JSON.parse(bodyString !== "" ? bodyString : "{}");
+                }
+                catch{
+                    bodyJson = null;
+                }
+                resolve(bodyJson);
+            });
+        });
+        body = await body;
+        if(body === null) return new BadRequest(JSON.stringify({error: "Cannot parse body"}));
         let query: string = "";
-        //no body and query yet
         return await routeHandler.routeHandleFunction.apply(null, [query, body]);
     }
 }
