@@ -1,0 +1,245 @@
+{
+	"info": {
+		"_postman_id": "5c1bdba6-d233-4b43-8e05-851577560b31",
+		"name": "CC-homework2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Artists",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/artists",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"artists"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Artists",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"The Weekend\",\r\n    \"genres\": [\"R&B\", \"Soul\"]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/artists",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"artists"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Artists",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/artists",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"artists"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Artists",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"_id\": \"6043a9b8a6c9857bfc3fb1b3\",\r\n        \"name\": \"Ariana Grande\",\r\n        \"genres\": [\r\n            \"Pop\",\r\n            \"R&B\"\r\n        ]\r\n    },\r\n    {\r\n        \"_id\": \"6043b6a47389287de8387e60\",\r\n        \"name\": \"The Weekend\",\r\n        \"genres\": [\r\n            \"R&B\",\r\n            \"Soul\"\r\n        ]\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/artists",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"artists"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Artist",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/artists/6043a9b8a6c9857bfc3fb1b3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"artists",
+						"6043a9b8a6c9857bfc3fb1b3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Artist",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/artists/6043a9b8a6c9857bfc3fb1b3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"artists",
+						"6043a9b8a6c9857bfc3fb1b3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Artist",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Madonna\",\r\n    \"genres\": [\r\n        \"Pop\",\r\n        \"R&B\"\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/artists/6043a9b8a6c9857bfc3fb1b3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"artists",
+						"6043a9b8a6c9857bfc3fb1b3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ArtistsSongs",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Bad Idea\",\r\n    \"release_year\": 2019,\r\n    \"genre\": \"Pop\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/artists/6043a9b8a6c9857bfc3fb1b3/songs",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"artists",
+						"6043a9b8a6c9857bfc3fb1b3",
+						"songs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ArtistsSongs",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/artists/6043a9b8a6c9857bfc3fb1b3/songs",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"artists",
+						"6043a9b8a6c9857bfc3fb1b3",
+						"songs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ArtistSong",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/artists/6043a9b8a6c9857bfc3fb1b3/songs/6043e09c3124a227dceb0237",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"artists",
+						"6043a9b8a6c9857bfc3fb1b3",
+						"songs",
+						"6043e09c3124a227dceb0237"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
