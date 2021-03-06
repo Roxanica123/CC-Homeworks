@@ -1,10 +1,11 @@
 import * as  http from "http";
 import { Server} from '.';
-import { Application } from "..";
+import { Application, SimpleTeddyDatabaseConnection } from "..";
 import { Handler } from "../routing";
 
-export function start(app: Application):void{
+export async function start(app: Application):Promise<void>{
     Handler.init(app.routes);
+    await SimpleTeddyDatabaseConnection.init(app.database_options);
     const server: http.Server = http.createServer((req: http.IncomingMessage, res: http.ServerResponse) => {
         Server.handle(req, res);
     });
