@@ -21,11 +21,22 @@ export class Connection {
         }
     }
 
-    public async executeInsert(database:string, collection:string, doc:any):Promise<DatabaseResponse>{
+    public async executeInsert(database: string, collection: string, doc: any): Promise<DatabaseResponse> {
         try {
             const db = await this.client.db(database);
             const dbCollection = await db.collection(collection);
             const cursor = dbCollection.insertOne(doc);
+            return { cursor: cursor, error: false }
+        }
+        catch (e) {
+            return { cursor: null, error: true }
+        }
+    }
+    public async executeDeleteMany(database: string, collection: string, query:any): Promise<DatabaseResponse> {
+        try {
+            const db = await this.client.db(database);
+            const dbCollection = await db.collection(collection);
+            const cursor = dbCollection.deleteMany(query);
             return { cursor: cursor, error: false }
         }
         catch (e) {

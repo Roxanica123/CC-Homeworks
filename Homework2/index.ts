@@ -13,6 +13,11 @@ const app = {
         route: "/artists",
         method: "POST",
         routeHandleFunction: ArtistsCollection.postArtists
+    },
+    {
+        route: "/artists",
+        method: "DELETE",
+        routeHandleFunction: ArtistsCollection.deleteArtists
     }
     ],
     database_options: {
