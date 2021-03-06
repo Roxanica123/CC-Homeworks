@@ -1,6 +1,6 @@
-import { Cursor } from "mongodb";
+import { Cursor, ObjectId } from "mongodb";
 import { Connection } from "../persistence";
-import { BadRequest, EmptyBody, HttpActionResult, Ok, ServerError } from "../simple-teddy";
+import { BadRequest, EmptyBody, HttpActionResult, NoContent, Ok, ServerError } from "../simple-teddy";
 import { Created } from "../simple-teddy/action_results/created";
 
 export class ArtistsCollection {
@@ -24,7 +24,7 @@ export class ArtistsCollection {
             catch {
                 return new BadRequest("Invalid artist body");
             }
-            const result = await (await new Connection().executeInsert("CloudSongs", "artists", doc)).cursor;
+            const result = await (await new Connection().executeInsertOne("CloudSongs", "artists", doc)).cursor;
 
             if (result !== null) {
                 return new Created(EmptyBody, result.insertedId);
@@ -42,6 +42,19 @@ export class ArtistsCollection {
                 return new Ok();
             }
             else { return new ServerError(JSON.stringify({ error: "Cannot delete the artists" })); }
+        }
+        catch (e) { return new ServerError(JSON.stringify({ error: "Somethig went wrong" })); }
+    }
+    static async putArtists(_query: string, body: any): Promise<HttpActionResult> {
+        try {
+            const result: Cursor | null = (await new Connection().executeDeleteMany("CloudSongs", "artists", {})).cursor;
+            if (result !== null) {
+                const result: Cursor | null = (await new Connection().executeInsertMany("CloudSongs", "artists", body)).cursor;
+                if (result !== null) {
+                    return new NoContent();
+                }
+            }
+            return new ServerError(JSON.stringify({ error: "Cannot delete the artists" }));
         }
         catch (e) { return new ServerError(JSON.stringify({ error: "Somethig went wrong" })); }
     }

@@ -30,3 +30,21 @@
 {"request":{"method":"DELETE","url":"/artists"},"response":{"statusCode":200,"body":"{}"},"timestamp":1615047086540,"latency":4}
 {"request":{"method":"GET","url":"/artists"},"response":{"statusCode":200,"body":"[]"},"timestamp":1615047093716,"latency":48}
 {"request":{"method":"POST","url":"/artists"},"response":{"statusCode":201,"body":"{}"},"timestamp":1615047096473,"latency":54}
+{"request":{"method":"GET","url":"/artists"},"response":{"statusCode":200,"body":"[{\"_id\":\"6043a9b8a6c9857bfc3fb1b3\",\"name\":\"The Weekend\",\"genres\":[\"R&B\",\"Soul\"]}]"},"timestamp":1615050397108,"latency":51}
+{"request":{"method":"POST","url":"/artists"},"response":{"statusCode":201,"body":"{}"},"timestamp":1615050404958,"latency":55}
+{"request":{"method":"GET","url":"/artists"},"response":{"statusCode":200,"body":"[{\"_id\":\"6043a9b8a6c9857bfc3fb1b3\",\"name\":\"The Weekend\",\"genres\":[\"R&B\",\"Soul\"]},{\"_id\":\"6043b6a47389287de8387e60\",\"name\":\"The Weekend\",\"genres\":[\"R&B\",\"Soul\"]}]"},"timestamp":1615050407425,"latency":45}
+{"request":{"method":"GET","url":"/artists"},"response":{"statusCode":200,"body":"[{\"_id\":\"6043a9b8a6c9857bfc3fb1b3\",\"name\":\"The Weekend\",\"genres\":[\"R&B\",\"Soul\"]},{\"_id\":\"6043b6a47389287de8387e60\",\"name\":\"The Weekend\",\"genres\":[\"R&B\",\"Soul\"]}]"},"timestamp":1615050540481,"latency":48}
+{"request":{"method":"PUT","url":"/artists"},"response":{"statusCode":204,"body":"{}"},"timestamp":1615050587705,"latency":4}
+{"request":{"method":"PUT","url":"/artists"},"response":{"statusCode":204,"body":"{}"},"timestamp":1615050783392,"latency":35}
+{"request":{"method":"PUT","url":"/artists"},"response":{"statusCode":204,"body":"{}"},"timestamp":1615051159544,"latency":11}
+{"request":{"method":"PUT","url":"/artists"},"response":{"statusCode":204,"body":"{}"},"timestamp":1615051186685,"latency":6}
+{"request":{"method":"PUT","url":"/artists"},"response":{"statusCode":204,"body":"{}"},"timestamp":1615051208237,"latency":2}
+{"request":{"method":"PUT","url":"/artists"},"response":{"statusCode":204,"body":"{}"},"timestamp":1615051301462,"latency":7}
+{"request":{"method":"PUT","url":"/artists"},"response":{"statusCode":204,"body":"{}"},"timestamp":1615051324734,"latency":6}
+{"request":{"method":"PUT","url":"/artists"},"response":{"statusCode":204,"body":"{}"},"timestamp":1615051400623,"latency":9}
+{"request":{"method":"PUT","url":"/artists"},"response":{"statusCode":204,"body":"{}"},"timestamp":1615051431353,"latency":6}
+{"request":{"method":"PUT","url":"/artists"},"response":{"statusCode":204,"body":"{}"},"timestamp":1615051625176,"latency":8}
+{"request":{"method":"PUT","url":"/artists"},"response":{"statusCode":204,"body":"{}"},"timestamp":1615052354849,"latency":8}
+{"request":{"method":"GET","url":"/artists"},"response":{"statusCode":200,"body":"[{\"_id\":\"6043a9b8a6c9857bfc3fb1b3\",\"name\":\"The Weekend\",\"genres\":[\"R&B\",\"Soul\"]},{\"_id\":\"6043b6a47389287de8387e60\",\"name\":\"The Weekend\",\"genres\":[\"R&B\",\"Soul\"]}]"},"timestamp":1615052361716,"latency":49}
+{"request":{"method":"PUT","url":"/artists"},"response":{"statusCode":204,"body":"{}"},"timestamp":1615052404503,"latency":2}
+{"request":{"method":"GET","url":"/artists"},"response":{"statusCode":200,"body":"[{\"_id\":\"6043a9b8a6c9857bfc3fb1b3\",\"name\":\"Ariana Grande\",\"genres\":[\"Pop\",\"R&B\"]},{\"_id\":\"6043b6a47389287de8387e60\",\"name\":\"The Weekend\",\"genres\":[\"R&B\",\"Soul\"]}]"},"timestamp":1615052407583,"latency":41}

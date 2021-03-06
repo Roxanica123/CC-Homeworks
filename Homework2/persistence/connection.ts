@@ -20,8 +20,18 @@ export class Connection {
             return { cursor: null, error: true }
         }
     }
-
-    public async executeInsert(database: string, collection: string, doc: any): Promise<DatabaseResponse> {
+    public async executeCount(database: string, collection: string, query: any, options: any): Promise<DatabaseResponse> {
+        try {
+            const db = await this.client.db(database);
+            const dbCollection = await db.collection(collection);
+            const cursor = dbCollection.count(query, options);
+            return { cursor: cursor, error: false }
+        }
+        catch (e) {
+            return { cursor: null, error: true }
+        }
+    }
+    public async executeInsertOne(database: string, collection: string, doc: any): Promise<DatabaseResponse> {
         try {
             const db = await this.client.db(database);
             const dbCollection = await db.collection(collection);
@@ -32,7 +42,18 @@ export class Connection {
             return { cursor: null, error: true }
         }
     }
-    public async executeDeleteMany(database: string, collection: string, query:any): Promise<DatabaseResponse> {
+    public async executeInsertMany(database: string, collection: string, doc: any[]): Promise<DatabaseResponse> {
+        try {
+            const db = await this.client.db(database);
+            const dbCollection = await db.collection(collection);
+            const cursor = dbCollection.insert(doc);
+            return { cursor: cursor, error: false }
+        }
+        catch (e) {
+            return { cursor: null, error: true }
+        }
+    }
+    public async executeDeleteMany(database: string, collection: string, query: any): Promise<DatabaseResponse> {
         try {
             const db = await this.client.db(database);
             const dbCollection = await db.collection(collection);

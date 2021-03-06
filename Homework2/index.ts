@@ -1,5 +1,4 @@
 import { ArtistsCollection } from "./collections";
-import { Connection } from "./persistence";
 import { mongoUri } from "./secrets"
 import { start } from "./simple-teddy"
 
@@ -18,6 +17,11 @@ const app = {
         route: "/artists",
         method: "DELETE",
         routeHandleFunction: ArtistsCollection.deleteArtists
+    },
+    {
+        route: "/artists",
+        method: "PUT",
+        routeHandleFunction: ArtistsCollection.putArtists
     }
     ],
     database_options: {
