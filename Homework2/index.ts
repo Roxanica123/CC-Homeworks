@@ -1,19 +1,23 @@
+import { ArtistsCollection } from "./collections";
 import { Connection } from "./persistence";
 import { mongoUri } from "./secrets"
 import { start } from "./simple-teddy"
 
 const app = {
-    routes: [],
+    routes: [{
+        route: "/artists",
+        method: "GET",
+        routeHandleFunction: ArtistsCollection.getArtists
+    },
+    {
+        route: "/artists",
+        method: "POST",
+        routeHandleFunction: ArtistsCollection.postArtists
+    }
+    ],
     database_options: {
         mongoUri: mongoUri,
         poolSize: 10
     }
 }
-async function cv(){
-    await start(app);
-    const contor = (await new Connection().executeFind("CloudSongs", "songs", {}, {})).cursor
-    contor.forEach((element: any) => {
-        console.log(element);
-    });
-}
-cv()
+start(app);

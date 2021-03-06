@@ -1,0 +1,12 @@
+{"request":{"method":"GET","url":"/"},"response":{"statusCode":400,"body":"Nothing to see here"},"timestamp":1615038767121,"latency":2}
+{"request":{"method":"GET","url":"/favicon.ico"},"response":{"statusCode":400,"body":"Nothing to see here"},"timestamp":1615038769817,"latency":1}
+{"request":{"method":"GET","url":"/artists"},"response":{"statusCode":200,"body":"{}"},"timestamp":1615039251191,"latency":6}
+{"request":{"method":"GET","url":"/favicon.ico"},"response":{"statusCode":400,"body":"Nothing to see here"},"timestamp":1615039251370,"latency":0}
+{"request":{"method":"GET","url":"/artists"},"response":{"statusCode":200,"body":"{}"},"timestamp":1615039264167,"latency":2}
+{"request":{"method":"GET","url":"/artists"},"response":{"statusCode":200,"body":"{}"},"timestamp":1615040148654,"latency":1}
+{"request":{"method":"GET","url":"/artists"},"response":{"statusCode":200,"body":"{}"},"timestamp":1615040152628,"latency":0}
+{"request":{"method":"GET","url":"/artists"},"response":{"statusCode":200,"body":"{}"},"timestamp":1615040164722,"latency":7}
+{"request":{"method":"GET","url":"/artists"},"response":{"statusCode":200,"body":"{}"},"timestamp":1615040225428,"latency":8}
+{"request":{"method":"GET","url":"/artists"},"response":{"statusCode":200,"body":"{}"},"timestamp":1615040255017,"latency":8}
+{"request":{"method":"GET","url":"/artists"},"response":{"statusCode":200,"body":"{}"},"timestamp":1615040271450,"latency":54}
+{"request":{"method":"GET","url":"/artists"},"response":{"statusCode":200,"body":"[{\"_id\":\"60438e4129820d649726129f\",\"name\":\"Ariana Grande\",\"genres\":[\"Pop\",\"R&B\",\"Trap\"]}]"},"timestamp":1615040288826,"latency":50}
