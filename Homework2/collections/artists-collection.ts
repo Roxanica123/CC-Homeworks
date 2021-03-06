@@ -1,9 +1,9 @@
 import { Cursor, ObjectId } from "mongodb";
 import { Connection } from "../persistence";
-import { BadRequest, EmptyBody, HttpActionResult, NoContent, NotFound, Ok, ServerError } from "../simple-teddy";
-import { Created } from "../simple-teddy/action_results/created";
+import { BadRequest, EmptyBody, HttpActionResult, NoContent, NotFound, Ok, ServerError, Created } from "../simple-teddy";
 
 export class ArtistsCollection {
+
     static async getArtists(): Promise<HttpActionResult> {
         try {
             const cursor: Cursor | null = (await new Connection().executeFind("CloudSongs", "artists", {}, {})).cursor;
@@ -28,7 +28,7 @@ export class ArtistsCollection {
         }
         catch (e) { console.log(e); return new ServerError(JSON.stringify({ error: "Somethig went wrong" })); }
     }
-    static async postArtists(_query: string, body: any): Promise<HttpActionResult> {
+    static async postArtist(_query: string, body: any): Promise<HttpActionResult> {
         try {
             let doc;
             try {
@@ -90,7 +90,6 @@ export class ArtistsCollection {
         try {
             const result: any | null = (await new Connection().executeUpdate("CloudSongs", "artists", { _id: id }, body)).cursor;
             if (result == null) return new ServerError(JSON.stringify({ error: "Cannot delete the artist" }));
-            console.log(await result);
             const modifiedCount = (await result).modifiedCount;
             
             if (modifiedCount == 0) {

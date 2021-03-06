@@ -1,4 +1,4 @@
-import { ArtistsCollection } from "./collections";
+import { ArtistsCollection, SongsCollection } from "./collections";
 import { mongoUri } from "./secrets"
 import { start } from "./simple-teddy"
 
@@ -11,7 +11,7 @@ const app = {
     {
         route: "/artists",
         method: "POST",
-        routeHandleFunction: ArtistsCollection.postArtists
+        routeHandleFunction: ArtistsCollection.postArtist
     },
     {
         route: "/artists",
@@ -24,20 +24,36 @@ const app = {
         routeHandleFunction: ArtistsCollection.putArtists
     },
     {
-        route: /\/artists\/[\w]+/,
+        route: /\/artists\/[\w]+$/,
         method: "GET",
         routeHandleFunction: ArtistsCollection.getArtist
     },
     {
-        route: /\/artists\/[\w]+/,
+        route: /\/artists\/[\w]+$/,
         method: "DELETE",
         routeHandleFunction: ArtistsCollection.deleteArtist
     },
     {
-        route: /\/artists\/[\w]+/,
+        route: /\/artists\/[\w]+$/,
         method: "PUT",
         routeHandleFunction: ArtistsCollection.putArtist
+    },
+    {
+        route: /\/artists\/[\w]+\/songs$/,
+        method: "POST",
+        routeHandleFunction: SongsCollection.postSong
+    },
+    {
+        route: /\/artists\/[\w]+\/songs$/,
+        method: "GET",
+        routeHandleFunction: SongsCollection.getSongs
+    },
+    {
+        route: /\/artists\/[\w]+\/songs\/[\w]+/,
+        method: "DELETE",
+        routeHandleFunction: SongsCollection.deleteSong
     }
+
     ],
     database_options: {
         mongoUri: mongoUri,

@@ -1,3 +1,4 @@
+import { compileFunction } from "node:vm";
 import { DatabaseOptions, SimpleTeddyDatabaseConnection } from "../simple-teddy";
 import { DatabaseResponse } from "./database-response";
 
