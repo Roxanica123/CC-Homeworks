@@ -64,4 +64,15 @@ export class Connection {
             return { cursor: null, error: true }
         }
     }
+    public async executeUpdate(database: string, collection: string, query: any, update: any): Promise<DatabaseResponse> {
+        try {
+            const db = await this.client.db(database);
+            const dbCollection = await db.collection(collection);
+            const cursor = dbCollection.updateOne(query, { $set: update });
+            return { cursor: cursor, error: false }
+        }
+        catch (e) {
+            return { cursor: null, error: true }
+        }
+    }
 }

@@ -22,6 +22,21 @@ const app = {
         route: "/artists",
         method: "PUT",
         routeHandleFunction: ArtistsCollection.putArtists
+    },
+    {
+        route: /\/artists\/[\w]+/,
+        method: "GET",
+        routeHandleFunction: ArtistsCollection.getArtist
+    },
+    {
+        route: /\/artists\/[\w]+/,
+        method: "DELETE",
+        routeHandleFunction: ArtistsCollection.deleteArtist
+    },
+    {
+        route: /\/artists\/[\w]+/,
+        method: "PUT",
+        routeHandleFunction: ArtistsCollection.putArtist
     }
     ],
     database_options: {

@@ -1,5 +1,5 @@
 export interface RouteHandler {
-    route: string
+    route: string | RegExp;
     method: string;
-    routeHandleFunction : Function    
+    routeHandleFunction: Function
 }

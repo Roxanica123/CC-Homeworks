@@ -5,3 +5,4 @@ export * from "./server-error";
 export * from "./created";
 export * from "./no-content";
 export * from "./conflict";
+export * from "./not-found";
