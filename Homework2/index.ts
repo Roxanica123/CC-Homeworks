@@ -52,6 +52,11 @@ const app = {
         route: /\/artists\/[\w]+\/songs\/[\w]+/,
         method: "DELETE",
         routeHandleFunction: SongsCollection.deleteSong
+    },
+    {
+        route: /\/artists\/[\w]+\/songs\/[\w]+/,
+        method: "PUT",
+        routeHandleFunction: SongsCollection.putSong
     }
 
     ],

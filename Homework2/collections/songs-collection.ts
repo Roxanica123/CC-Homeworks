@@ -35,7 +35,6 @@ export class SongsCollection {
         }
         catch (e) { console.log(e); return new ServerError(JSON.stringify({ error: "Somethig went wrong" })); }
     }
-
     static async deleteSong(_query: string, _body: any, path: string): Promise<HttpActionResult> {
         const id_artist = path.split('/')[2];
         const id = path.split('/')[4];
@@ -50,6 +49,19 @@ export class SongsCollection {
                 return new NotFound();
             }
             return new Ok();
+        }
+        catch (e) { return new ServerError(JSON.stringify({ error: "Somethig went wrong" })); }
+    }
+    static async putSong(_query: string, body: any, path: string): Promise<HttpActionResult>{
+        const id_artist = path.split('/')[2];
+        const id = path.split('/')[4];
+        try {
+            const existent = await (await new Connection().executeCount("CloudSongs", "artists", { _id: id_artist }, {})).cursor;
+            if (existent !== 1)
+                return new NotFound();
+            const result: any | null = (await new Connection().executeUpdate("CloudSongs", "songs", { _id: new ObjectId(id), artist_id:id_artist }, body)).cursor;
+            if (result == null) return new ServerError(JSON.stringify({ error: "Cannot update the song" }));
+            return new NoContent();
         }
         catch (e) { return new ServerError(JSON.stringify({ error: "Somethig went wrong" })); }
     }
