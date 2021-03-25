@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Problem form</title>
+</head>
+
+<body>
+
+    <form class='new-problem'
+        action='/'
+        method='POST'
+        enctype="multipart/form-data">
+        <label for='title'>Problem Title</label>
+        <input type="text"
+            name="title"
+            id="title">
+
+        <label for='description'>Description</label>
+        <input type="text"
+            name="description"
+            id="description">
+
+        <label>Restrictions</label>
+        <input type="text"
+            name="restrictions"
+            id="restrictions">
+
+        <label for='example'>Example Input</label>
+        <input type="text"
+            name="example"
+            id="example">
+
+        <label for='files-in'>Input Files</label>
+        <input type='file'
+            multiple='multiple'
+            accept='file'
+            name='inFiles'
+            id='files-in' />
+        <label for='files-out'>Output Files</label>
+        <input type='file'
+            multiple='multiple'
+            accept='file'
+            name='outFiles'
+            id='files-out' />
+        <button type='submit'>upload</button>
+    </form>
+
+</body>
+
+</html>
