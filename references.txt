@@ -1,0 +1,2 @@
+simple_teddy is a simplified version of the code I implemented for the Web Technologies project:
+https://github.com/Roxanica123/TW/tree/master/back_end/teddy
