@@ -2,6 +2,7 @@ import express from "express";
 import path from "path"
 import multer from "multer";
 import { UploadHandler } from "./handlers";
+import { FilesRepository } from "./repositories/file_repository";
 
 
 const app = express();
@@ -18,6 +19,7 @@ app.post('/', upload.fields([{ name: 'inFiles', maxCount: 100 }, { name: 'outFil
     if (res.statusCode == 201) {
         res.setHeader("Location", req.url + "/" + response.redirectLocation)
     }
+    new FilesRepository().quickstart();
     res.end(response.body);
 });
 app.listen(8080);
