@@ -1,20 +1,18 @@
-import { Datastore } from '@google-cloud/datastore';
-import { Problem } from '../handlers';
+import { Storage } from '@google-cloud/storage';
+import { fileURLToPath } from 'node:url';
+import { MulterFile, Problem } from '../handlers';
 
 
 export class FilesRepository {
-    private readonly datastore;
-    private readonly kind = "Problem";
+    private readonly storage;
+    private readonly bucket;
+    private readonly bucketName = "problems-test-cases";
     constructor() {
-        this.datastore = new Datastore();
+        this.storage = new Storage();
+        this.bucket = this.storage.bucket(this.bucketName);
     }
-    async saveProblem(problem:Problem) {
-        const poblemKey = this.datastore.key(this.kind);
-        const problemToInsert = {
-          key: poblemKey,
-          data: problem,
-        };
-        await this.datastore.save(problemToInsert);
-        return problemToInsert.key.id;
+    async saveFile(multerFile: MulterFile, saveLocation: string) {
+        const file = this.bucket.file(saveLocation + multerFile.originalname);
+        await file.save(multerFile.buffer);
     }
 }

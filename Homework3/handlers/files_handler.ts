@@ -1,12 +1,15 @@
 import { MulterFile, TestFilesList } from ".";
+import { FilesRepository } from "../repositories/file_repository";
 
 export class FilesHandler {
     private readonly inFiles: MulterFile[];
     private readonly outFiles: MulterFile[];
+    private readonly filesRepository: FilesRepository;
 
     constructor(filesContainer: TestFilesList) {
         this.inFiles = filesContainer.inFiles;
         this.outFiles = filesContainer.outFiles;
+        this.filesRepository = new FilesRepository();
     }
 
     areFilesValid(): boolean {
@@ -28,5 +31,12 @@ export class FilesHandler {
     duplicateFilesExist(): boolean {
         const set = new Set(this.inFiles.map(file => this.getFileNameWithoutExtension(file.originalname)))
         return !(set.size == this.inFiles.length)
+    }
+
+    async saveTestFiles(problemId: string) {
+        const inputPath = problemId + "/input/";
+        const outputPath = problemId + "/output/";
+        await Promise.all(this.inFiles.map(file => this.filesRepository.saveFile(file, inputPath)));
+        await Promise.all(this.inFiles.map(file => this.filesRepository.saveFile(file, outputPath)));
     }
 }

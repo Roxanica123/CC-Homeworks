@@ -19,7 +19,11 @@ export class UploadHandler {
         const problemId = await this.problemsHandler.saveProblem();
         if (problemId === undefined)
             return new ServerError("Could not save the problem :(.");
-
-        return new Created(EmptyBody, "");
+        try {
+            await this.filesHandler.saveTestFiles(problemId);
+        } catch (error) {
+            return new ServerError("Could not save the test cases :(")
+        }
+        return new Created("Problem saved!", "");
     }
 }
