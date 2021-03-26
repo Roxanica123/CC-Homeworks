@@ -1,5 +1,5 @@
 import { MulterFile, TestFilesList } from ".";
-import { FilesRepository } from "../repositories/file_repository";
+import { FilesRepository } from "../repositories";
 
 export class FilesHandler {
     private readonly inFiles: MulterFile[];

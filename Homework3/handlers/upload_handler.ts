@@ -1,7 +1,7 @@
 
-import { BadRequest, Created, EmptyBody, HttpActionResult, Ok, ServerError } from "../action_results";
-import { FilesHandler } from "./files_handler";
-import { ProblemHandler } from "./problem_handler";
+import { BadRequest, Created, HttpActionResult, ServerError } from "../action_results";
+import { FilesHandler, ProblemHandler } from ".";
+
 
 export class UploadHandler {
     private readonly filesHandler: FilesHandler;

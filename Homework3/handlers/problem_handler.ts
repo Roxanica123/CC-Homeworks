@@ -1,5 +1,5 @@
 import { Problem } from ".";
-import { ProblemRepository } from "../repositories/problem_repository";
+import { ProblemRepository } from "../repositories";
 
 export class ProblemHandler {
     private readonly problem: Problem;

@@ -21,4 +21,23 @@ app.post('/', upload.fields([{ name: 'inFiles', maxCount: 100 }, { name: 'outFil
     }
     res.end(response.body);
 });
+
+app.get('/test', function (req: any, res: any) {
+    const { Storage } = require('@google-cloud/storage');
+    const storage = new Storage();
+    const myBucket = storage.bucket('problems-test-cases');
+
+    const file = myBucket.file('5646488461901824/input/1.in');
+    file.createReadStream()
+        .on('error', function (err:any) { })
+        .on('response', function (response:any) {
+            // Server connected and responded with the specified status and headers.
+        })
+        .on('data', function(data:any){ console.log(data.toString()); })
+        .on('end', function () {
+            // The file is fully downloaded.
+            res.end("Totu bine");
+        })
+});
+
 app.listen(8080);
