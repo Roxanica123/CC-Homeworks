@@ -13,13 +13,12 @@ app.get('/', function (req: any, res: any) {
     res.sendFile(path.join(__dirname + '/../index.html'));
 });
 
-app.post('/', upload.fields([{ name: 'inFiles', maxCount: 100 }, { name: 'outFiles', maxCount: 100 }]), function (req: any, res: any, err: any) {
-    const response = new UploadHandler(req).handle();
+app.post('/', upload.fields([{ name: 'inFiles', maxCount: 100 }, { name: 'outFiles', maxCount: 100 }]), async function (req: any, res: any, err: any) {
+    const response = await (new UploadHandler(req).handle());
     res.statusCode = response.statusCode;
     if (res.statusCode == 201) {
         res.setHeader("Location", req.url + "/" + response.redirectLocation)
     }
-    new FilesRepository().quickstart();
     res.end(response.body);
 });
 app.listen(8080);

@@ -2,7 +2,7 @@ import { Datastore } from '@google-cloud/datastore';
 import { Problem } from '../handlers';
 
 
-export class FilesRepository {
+export class ProblemRepository {
     private readonly datastore;
     private readonly kind = "Problem";
     constructor() {
@@ -15,6 +15,7 @@ export class FilesRepository {
           data: problem,
         };
         await this.datastore.save(problemToInsert);
+        console.log(problemToInsert.key.id);
         return problemToInsert.key.id;
     }
 }
