@@ -9,7 +9,7 @@
 <body>
 
     <form class='new-problem'
-        action='/'
+        action='/upload'
         method='POST'
         enctype="multipart/form-data">
         <label for='title'>Problem Title</label>
@@ -18,19 +18,24 @@
             id="title">
 
         <label for='description'>Description</label>
-        <input type="text"
+        <textarea rows="10"
+            cols="50"
             name="description"
             id="description">
+        </textarea>
 
         <label>Restrictions</label>
-        <input type="text"
+        <textarea rows="5"
+            cols="50"
             name="restrictions"
             id="restrictions">
-
-        <label for='example'>Example Input</label>
-        <input type="text"
+        </textarea>
+        <label for='example'>Example</label>
+        <textarea rows="5"
+            cols="50"
             name="example"
             id="example">
+        </textarea>
 
         <label for='files-in'>Input Files</label>
         <input type='file'
@@ -38,6 +43,7 @@
             accept='file'
             name='inFiles'
             id='files-in' />
+            
         <label for='files-out'>Output Files</label>
         <input type='file'
             multiple='multiple'

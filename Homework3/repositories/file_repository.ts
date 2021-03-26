@@ -1,5 +1,5 @@
 import { Storage } from '@google-cloud/storage';
-import { MulterFile, Problem } from '../handlers';
+import { MulterFile, ProblemData } from '../upload_handlers';
 
 
 export class FilesRepository {

@@ -1,4 +1,4 @@
-export class Problem {
+export class ProblemData {
     private title: string;
     private description: string;
     private restrictions: string;

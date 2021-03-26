@@ -1,5 +1,6 @@
 import { Datastore } from '@google-cloud/datastore';
-import { Problem } from '../handlers';
+import { ProblemData } from '../upload_handlers';
+
 
 
 export class ProblemRepository {
@@ -8,14 +9,29 @@ export class ProblemRepository {
     constructor() {
         this.datastore = new Datastore();
     }
-    async saveProblem(problem:Problem) {
+
+    getDatastoreKeySymbol() {
+        return this.datastore.KEY;
+    }
+
+    async saveProblem(problem: ProblemData) {
         const poblemKey = this.datastore.key(this.kind);
         const problemToInsert = {
-          key: poblemKey,
-          data: problem,
+            key: poblemKey,
+            data: problem,
         };
         await this.datastore.save(problemToInsert);
-        console.log(problemToInsert.key.id);
         return problemToInsert.key.id;
+    }
+    async getAllProblems(): Promise<any[]> {
+        const query = this.datastore
+            .createQuery(this.kind);
+        const [result] = await this.datastore.runQuery(query)
+        return result;
+    }
+    async getProblemById(id: number): Promise<any> {
+        const key = this.datastore.key([this.kind, id]);
+        const [result] = await this.datastore.get(key);
+        return result;
     }
 }

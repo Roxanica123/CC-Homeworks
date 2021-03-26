@@ -12,10 +12,15 @@ export class UploadHandler {
     }
 
     async handle(): Promise<HttpActionResult> {
-        if (!this.filesHandler.areFilesValid())
-            return new BadRequest("Invalid test files!");
-        if (!this.problemsHandler.areFieldsValid())
-            return new BadRequest("Invalid problem fields!")
+        try {
+            if (!this.filesHandler.areFilesValid())
+                return new BadRequest("Invalid test files!");
+            if (!this.problemsHandler.areFieldsValid())
+                return new BadRequest("Invalid problem fields!");
+        } catch (error) {
+            return new BadRequest("Invalid form fields!");
+        }
+
         const problemId = await this.problemsHandler.saveProblem();
         if (problemId === undefined)
             return new ServerError("Could not save the problem :(.");
