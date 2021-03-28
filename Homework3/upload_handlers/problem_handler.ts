@@ -13,9 +13,7 @@ export class ProblemHandler {
 
     areFieldsValid(): boolean {
         const invalidFields = Object.values(this.problem).find(value => value == null || value == "");
-        if (invalidFields !== undefined)
-            return false;
-        return /^[\w,\s-]+\.[\w]*$/.test(this.problem.file)
+        return invalidFields === undefined
     }
 
     async saveProblem(): Promise<string | undefined> {
