@@ -1,12 +1,14 @@
 export class ProblemData {
-    private title: string;
-    private description: string;
-    private restrictions: string;
-    private example: string;
+    public readonly title: string;
+    public readonly description: string;
+    public readonly restrictions: string;
+    public readonly example: string;
+    public readonly file: string;
     constructor(requestBody: any) {
         this.title = requestBody.title ?? null;
         this.description = requestBody.description ?? null;
         this.restrictions = requestBody.restrictions ?? null;
         this.example = requestBody.example ?? null;
+        this.file = requestBody.file ?? null;
     }
 }

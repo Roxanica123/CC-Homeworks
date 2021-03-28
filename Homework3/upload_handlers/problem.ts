@@ -4,4 +4,5 @@ export interface Problem {
     restrictions: string;
     example: string;
     id: string;
+    file: string;
 }

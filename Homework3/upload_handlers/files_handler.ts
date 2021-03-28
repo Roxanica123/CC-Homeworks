@@ -37,6 +37,6 @@ export class FilesHandler {
         const inputPath = problemId + "/input/";
         const outputPath = problemId + "/output/";
         await Promise.all(this.inFiles.map(file => this.filesRepository.saveFile(file, inputPath)));
-        await Promise.all(this.inFiles.map(file => this.filesRepository.saveFile(file, outputPath)));
+        await Promise.all(this.outFiles.map(file => this.filesRepository.saveFile(file, outputPath)));
     }
 }
