@@ -1,9 +1,7 @@
 import dotenv from "dotenv";
 import express from "express";
 import { checkSchema, validationResult } from "express-validator";
-import jwt from "jsonwebtoken";
 import { HttpActionResult } from "./action_results";
-import { UserData } from "./entities/user_data";
 import { AuthenticationService } from "./services/auth_service";
 import { JwtService } from "./services/jwt_service";
 import { loginSchema, registerSchema } from "./validators";
@@ -14,17 +12,12 @@ app.use(express.json())
 
 let refreshTokens: any = []
 
-app.post('/token', (req, res) => {
+app.post('/token', async (req, res) => {
   const refreshToken = req.body.token
   if (refreshToken == null) return res.sendStatus(401)
-  //verify existance
-  if (!refreshTokens.includes(refreshToken)) return res.sendStatus(403)
-
-  jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET ?? "", (err: any, user: any) => {
-    if (err) return res.sendStatus(403)
-    const accessToken = generateAccessToken({ name: user.name })
-    res.json({ accessToken: accessToken })
-  })
+  const response = await new JwtService().getAccessToken(req.body.token);
+  res.statusCode = response.statusCode;
+  res.end(response.body);
 })
 
 app.delete('/logout', (req, res) => {
@@ -56,8 +49,5 @@ app.post('/register', checkSchema(registerSchema), async (req: any, res: any) =>
   res.json(response.body);
 })
 
-function generateAccessToken(user: any) {
-  return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET ?? "", { expiresIn: '15s' })
-}
 
 app.listen(8080);

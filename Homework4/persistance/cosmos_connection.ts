@@ -13,7 +13,7 @@ export class CosmosConnection implements DatabaseConnection {
     }
     public async executeQuery(query: Query, containerId: string): Promise<any[] | undefined> {
         try {
-            const { resources: items } = await this.database.container(config.containerId).items
+            const { resources: items } = await this.database.container(containerId).items
                 .query(query)
                 .fetchAll();
             return items;
@@ -25,7 +25,7 @@ export class CosmosConnection implements DatabaseConnection {
     }
     public async insert(item: any, containerId: string): Promise<any | undefined> {
         try {
-            const { resource: createdItem } = await this.database.container(config.containerId).items.create(item);
+            const { resource: createdItem } = await this.database.container(containerId).items.create(item);
             return createdItem;
         }
         catch (err) {
