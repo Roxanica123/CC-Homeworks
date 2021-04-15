@@ -1,6 +1,6 @@
 import { Query } from "./query";
 
 export interface DatabaseConnection {
-    executeQuery(query: Query): Promise<any[] | undefined>;
-    insert(item: any): Promise<any | undefined>;
+    executeQuery(query: Query, containerId: string): Promise<any[] | undefined>;
+    insert(item: any, containerId: string): Promise<any | undefined>;
 }

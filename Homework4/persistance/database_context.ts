@@ -1,5 +1,3 @@
-import { CosmosConnection } from "./cosmos_connection";
-
 const config = require("../config");
 
 /*

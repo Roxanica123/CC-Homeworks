@@ -4,6 +4,7 @@ import { CosmosConnection, DatabaseConnection, Query } from "../persistance";
 
 export class UserRepository {
     private readonly connection: DatabaseConnection;
+    private containerId: string = "users";
     constructor() {
         this.connection = CosmosConnection.getInstance();
     }
@@ -12,17 +13,23 @@ export class UserRepository {
         const query: Query = {
             query: `SELECT COUNT(1) from c WHERE c.email = "${user.email}"`
         };
-        const result: any[] | undefined = await this.connection.executeQuery(query)
+        const result: any[] | undefined = await this.connection.executeQuery(query, this.containerId)
         if (result !== undefined) {
             return result[0]['$1'] == 1;
         }
         return undefined;
     }
     public async save(user: User): Promise<User | undefined> {
-        const result: User | undefined = await this.connection.insert(user);
+        const result: User | undefined = await this.connection.insert(user, this.containerId);
         return result;
     }
-    public findByEmail(userEmail: string): User | undefined {
-        return undefined;
+    public async findByEmail(userEmail: string): Promise<User | undefined | null> {
+        const query: Query = {
+            query: `SELECT * from c WHERE c.email = "${userEmail}"`
+        };
+        const result: any[] | undefined = await this.connection.executeQuery(query, this.containerId)
+        if (result === undefined) return undefined;
+        if (result.length === 0) return null;
+        return result[0];
     }
 }

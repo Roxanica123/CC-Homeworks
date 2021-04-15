@@ -1,5 +1,5 @@
 import crypto from "crypto"
-import { BadRequest, Created, EmptyBody, HttpActionResult, ServerError } from "../action_results";
+import { BadRequest, Created, EmptyBody, HttpActionResult, ServerError, Unauthorized } from "../action_results";
 import { User } from "../entities/user";
 import { UserData } from "../entities/user_data";
 import { UserRepository } from "../repositories/user_respository";
@@ -25,8 +25,13 @@ export class AuthenticationService {
         }
         return new BadRequest("User already exists");
     }
-    public async authenticateUser(user: UserData) {
-        const existentUser: User | undefined = this.userRepository.findByEmail(user.email);
+    public async authenticateUser(user: UserData): Promise<User | null | undefined> {
+        const existentUser: User | undefined | null = await this.userRepository.findByEmail(user.email);
+        if (existentUser === undefined || existentUser === null) return existentUser;
+        if (this.getPasswordHash(user.password) === existentUser.passwordHash) {
+            return existentUser;
+        }
+        return null;
     }
     private getPasswordHash(password: string) {
         return crypto.createHash("sha256").update(password).digest("hex");
