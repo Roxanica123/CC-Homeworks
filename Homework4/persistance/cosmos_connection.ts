@@ -23,6 +23,19 @@ export class CosmosConnection implements DatabaseConnection {
             return undefined;
         }
     }
+
+    public async deleteQuery(query: Query, containerId: string): Promise<any | undefined> {
+        const result: any[] | undefined = await this.executeQuery(query, containerId)
+        if (result !== undefined) {
+            try {
+                return await Promise.all(result.map(element => this.database.container(containerId).item(element.id, element.email).delete()))
+            }
+            catch (err) {
+                return undefined;
+            }
+        }
+        return undefined;
+    }
     public async insert(item: any, containerId: string): Promise<any | undefined> {
         try {
             const { resource: createdItem } = await this.database.container(containerId).items.create(item);

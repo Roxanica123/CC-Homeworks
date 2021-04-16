@@ -19,4 +19,11 @@ export class JwtRepository {
     public async save(token: string, email: string): Promise<void> {
         const result = await this.connection.insert({ refresh_token: token, email: email }, this.containerId);
     }
+    public async delete(token: string): Promise<any | undefined> {
+        const query: Query = {
+            query: `SELECT * from c WHERE c.refresh_token = "${token}"`
+        };
+        const result: any[] | undefined = await this.connection.deleteQuery(query, this.containerId);
+        return result;
+    }
 }

@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken"
 import dotenv from "dotenv";
-import { EmptyBody, HttpActionResult, Ok, ServerError, Unauthorized } from "../action_results";
+import { EmptyBody, HttpActionResult, NoContent, Ok, ServerError, Unauthorized } from "../action_results";
 import { User } from "../entities/user";
 import { UserData } from "../entities/user_data";
 import { AuthenticationService } from "./auth_service";
@@ -35,6 +35,11 @@ export class JwtService {
         return new Ok(JSON.stringify({ accessToken: this.generateAccessToken(result) }));
     }
 
+    public async deleteRefreshToken(refreshToken:string): Promise<HttpActionResult>{
+        const deleted = await this.jwtRepository.delete(refreshToken);
+        if(deleted === undefined) return new ServerError("Something went wrong :(");
+        return new NoContent(EmptyBody);
+    }
     private generateAccessToken(user: any): string {
         return jwt.sign({
             username: user.username,

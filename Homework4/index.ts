@@ -20,10 +20,12 @@ app.post('/token', async (req, res) => {
   res.end(response.body);
 })
 
-app.delete('/logout', (req, res) => {
-  refreshTokens = refreshTokens.filter((token: any) => token !== req.body.token)
-  //delete refresh token
-  res.sendStatus(204)
+app.delete('/logout', async (req, res) => {
+  const refreshToken = req.body.token
+  if (refreshToken == null) return res.sendStatus(401)
+  const response = await new JwtService().deleteRefreshToken(req.body.token);
+  res.statusCode = response.statusCode;
+  res.end(response.body);
 })
 
 app.post('/login', checkSchema(loginSchema), async (req: any, res: any) => {
