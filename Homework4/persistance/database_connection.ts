@@ -1,4 +1,4 @@
-import { Query } from "./query";
+import { Query } from ".";
 
 export interface DatabaseConnection {
     executeQuery(query: Query, containerId: string): Promise<any[] | undefined>;

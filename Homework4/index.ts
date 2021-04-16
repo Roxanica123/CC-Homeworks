@@ -2,8 +2,7 @@ import dotenv from "dotenv";
 import express from "express";
 import { checkSchema, validationResult } from "express-validator";
 import { HttpActionResult } from "./action_results";
-import { AuthenticationService } from "./services/auth_service";
-import { JwtService } from "./services/jwt_service";
+import { AuthenticationService, JwtService } from "./services";
 import { loginSchema, registerSchema } from "./validators";
 
 dotenv.config();
@@ -52,4 +51,4 @@ app.post('/register', checkSchema(registerSchema), async (req: any, res: any) =>
 })
 
 
-app.listen(8080);
+app.listen(1337);

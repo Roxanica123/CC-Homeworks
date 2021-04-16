@@ -1,5 +1,4 @@
-import { User } from "../entities/user";
-import { UserData } from "../entities/user_data";
+import { User, UserData } from "../entities";
 import { CosmosConnection, DatabaseConnection, Query } from "../persistance";
 
 export class UserRepository {

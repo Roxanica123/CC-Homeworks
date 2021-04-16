@@ -6,4 +6,5 @@ export * from "./created";
 export * from "./no-content";
 export * from "./conflict";
 export * from "./not-found";
-export * from "./unauthorized"
+export * from "./unauthorized";
+export * from "./forbidden"

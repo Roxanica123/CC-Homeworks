@@ -1,8 +1,7 @@
 import crypto from "crypto"
 import { BadRequest, Created, EmptyBody, HttpActionResult, ServerError, Unauthorized } from "../action_results";
-import { User } from "../entities/user";
-import { UserData } from "../entities/user_data";
-import { UserRepository } from "../repositories/user_respository";
+import { User, UserData } from "../entities";
+import { UserRepository } from "../repositories";
 
 export class AuthenticationService {
     private readonly userRepository: UserRepository;
