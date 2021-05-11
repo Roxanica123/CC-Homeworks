@@ -30,7 +30,22 @@ sequenceDiagram
   Google Cloud Datastore -->> Problems Microservice : Submissions
   
   Problems Microservice -->> Web Application : {submissions}[]
-  Web Application --> User : Submissions page
+  Web Application -->> User : Submissions page
+
+```
+
+
+```mermaid
+sequenceDiagram
+  Title: View Submission
+  Note right of User : User is on the /submissions page
+  User->>Web Application: Clicks on a submission card
+  Web Application ->> Problems Microservice : GET /evaluations/:id
+  Problems Microservice ->> Google Cloud Datastore : Get submission by id
+  Google Cloud Datastore -->> Problems Microservice : Submission
+  
+  Problems Microservice -->> Web Application : {submission}
+  Web Application -->> User : Redirect /submissions/:id submission details page
 
 ```
 
