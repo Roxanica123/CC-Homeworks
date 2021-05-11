@@ -116,7 +116,7 @@ sequenceDiagram
   Google Cloud Datastore -->> Problems Microservice : Submission
   
   Problems Microservice -->> Web Application : {submission}
-  Web Application -->> User : Redirect /submissions/:id submission details page
+  Web Application ->> User : Redirect /submissions/:id submission details page
 
 ```
 
