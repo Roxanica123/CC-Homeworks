@@ -1,6 +1,6 @@
 import crypto from "crypto"
 import { BadRequest, Created, EmptyBody, HttpActionResult, ServerError, Unauthorized } from "../action_results";
-import { User, UserData } from "../entities";
+import { User, UserData, UserTypes } from "../entities";
 import { UserRepository } from "../repositories";
 
 export class AuthenticationService {
@@ -17,7 +17,8 @@ export class AuthenticationService {
             const result = await this.userRepository.save({
                 username: user.username ?? "",
                 passwordHash: this.getPasswordHash(user.password),
-                email: user.email
+                email: user.email,
+                role: UserTypes.BASIC
             });
             if (result == undefined) return new ServerError("Something went wrong :(");
             return new Created(EmptyBody);

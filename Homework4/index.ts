@@ -1,5 +1,6 @@
-import dotenv from "dotenv";
+
 import express from "express";
+import dotenv from "dotenv";
 import { checkSchema, validationResult } from "express-validator";
 import { HttpActionResult } from "./action_results";
 import { AuthenticationService, JwtService } from "./services";
@@ -9,7 +10,6 @@ dotenv.config();
 const app = express();
 app.use(express.json())
 
-let refreshTokens: any = []
 
 app.post('/token', async (req, res) => {
   const refreshToken = req.body.token
@@ -51,4 +51,4 @@ app.post('/register', checkSchema(registerSchema), async (req: any, res: any) =>
 })
 
 
-app.listen(1337);
+app.listen(8080);

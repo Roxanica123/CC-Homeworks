@@ -1,11 +1,9 @@
 import jwt from "jsonwebtoken"
-import dotenv from "dotenv";
 import { EmptyBody, HttpActionResult, NoContent, Ok, ServerError, Unauthorized, Forbidden } from "../action_results";
 import { User, UserData } from "../entities";
 import { AuthenticationService } from ".";
 import { JwtRepository } from "../repositories";
 
-dotenv.config()
 
 export class JwtService {
     private readonly jwtRepository: JwtRepository;
@@ -42,13 +40,15 @@ export class JwtService {
     private generateAccessToken(user: any): string {
         return jwt.sign({
             username: user.username,
-            email: user.email
+            email: user.email,
+            role: user.role
         }, process.env.ACCESS_TOKEN_SECRET ?? "", { expiresIn: '15m' })
     }
     private generateRefreshToken(user: User): string {
         return jwt.sign({
             username: user.username,
-            email: user.email
+            email: user.email,
+            role: user.role
         }, process.env.REFRESH_TOKEN_SECRET ?? "")
     }
 }
