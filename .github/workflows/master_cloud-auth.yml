@@ -27,8 +27,8 @@ jobs:
 
     - name: Upload artifact for deployment job
       uses: actions/upload-artifact@v2
-      working-directory: ./Homework4/build
       with:
+        working-directory: ./Homework4/build
         name: node-app
         path: .
 
