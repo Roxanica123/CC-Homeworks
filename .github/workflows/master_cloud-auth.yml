@@ -23,7 +23,6 @@ jobs:
         tsc --project ./tsconfig.json
         cp "package.json" "./build/package.json"
         cp "package-lock.json" "./build/package-lock.json"
-        cp -R "./node_modules" "./build/"
 
     - name: Upload artifact for deployment job
       uses: actions/upload-artifact@v2
