@@ -16,7 +16,7 @@ jobs:
       with:
         node-version: '14.x'
 
-    - name: npm install, build, and test
+    - name: npm install
       working-directory: ./Homework4
       run: |
         npm install
@@ -28,9 +28,8 @@ jobs:
     - name: Upload artifact for deployment job
       uses: actions/upload-artifact@v2
       with:
-        working-directory: ./Homework4/build
         name: node-app
-        path: .
+        path: ./Homework4/build
 
   deploy:
     runs-on: ubuntu-latest
