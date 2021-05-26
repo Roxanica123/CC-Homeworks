@@ -26,8 +26,8 @@ jobs:
         cp -R "./node_modules" "./build/"
 
     - name: Upload artifact for deployment job
-      working-directory: ./Homework4/build
       uses: actions/upload-artifact@v2
+      working-directory: ./Homework4/build
       with:
         name: node-app
         path: .
