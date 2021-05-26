@@ -2,6 +2,7 @@ import { ProblemData } from ".";
 import { HttpActionResult, Ok, ServerError } from "../action_results";
 import { ProblemRepository } from "../repositories";
 import { ProblemSnippet } from ".";
+import { PROBLEM_STATUS } from "./problem-data";
 
 export class ProblemHandler {
     private readonly problem: ProblemData;
@@ -25,9 +26,9 @@ export class ProblemHandler {
             return undefined;
         }
     }
-    async getAllProblems(): Promise<HttpActionResult> {
+    async getAllProblems(status:PROBLEM_STATUS): Promise<HttpActionResult> {
         try {
-            const problems: ProblemSnippet[] = (await this.problemRepository.getAllProblems()).map(task => {
+            const problems: ProblemSnippet[] = (await this.problemRepository.getAllProblems(status)).map(task => {
                 return {
                     description: task.description.substr(0, 100),
                     title: task.title,
@@ -41,6 +42,8 @@ export class ProblemHandler {
             return new ServerError("Could not get the problems!");
         }
     }
+
+    
     async getProblem(id: string): Promise<HttpActionResult> {
         try {
             const result = await this.problemRepository.getProblemById(parseInt(id));

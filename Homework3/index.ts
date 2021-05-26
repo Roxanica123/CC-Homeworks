@@ -1,21 +1,27 @@
 import express from "express";
 import path from "path"
 import multer from "multer";
-import { ProblemHandler, UploadHandler } from "./upload_handlers";
+import { ProblemHandler, PROBLEM_STATUS, UploadHandler } from "./upload_handlers";
 import { EvaluationHandler } from "./evaluations_handlers/evaluation_handler";
 
 const app = express();
 const upload = multer();
+var cors = require('cors')
 
-app.get('/', function (req: any, res: any) {
-    res.sendFile(path.join(__dirname + '/static/index.html'));
-});
+app.use(cors())
 
-app.get('/upload', function (req: any, res: any) {
-    res.sendFile(path.join(__dirname + '/static/index.html'));
-});
+
+function setCorsOrigin(res:any) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Request-Method', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET, POST, PATCH, DELETE');
+    res.setHeader('Access-Control-Max-Age', 3600);
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With');
+    return res;
+}
 
 app.post('/upload', upload.fields([{ name: 'inFiles', maxCount: 100 }, { name: 'outFiles', maxCount: 100 }]), async function (req: any, res: any, err: any) {
+    res = setCorsOrigin(res);
     const response = await (new UploadHandler(req).handle());
     res.statusCode = response.statusCode;
     if (res.statusCode == 201) {
@@ -25,12 +31,14 @@ app.post('/upload', upload.fields([{ name: 'inFiles', maxCount: 100 }, { name: '
 });
 
 app.get('/problems', async function (req: any, res: any) {
-    const result = await new ProblemHandler().getAllProblems();
+    res = setCorsOrigin(res);
+    const result = await new ProblemHandler().getAllProblems(PROBLEM_STATUS.ACCEPTED);
     res.statusCode = result.statusCode;
     res.end(result.body);
 });
 
 app.get(/\/problems\/[\w]+$/, async function (req: any, res: any) {
+    res = setCorsOrigin(res);
     const baseURL: string = 'http://' + req.headers.host + '/';
     const id = new URL(req.url ? req.url : "", baseURL).pathname.split('/')[2];
     const result = await new ProblemHandler().getProblem(id);
@@ -39,10 +47,12 @@ app.get(/\/problems\/[\w]+$/, async function (req: any, res: any) {
 });
 
 app.get('/upload/formstyle', function (req: any, res: any) {
+    res = setCorsOrigin(res);
     res.sendFile(path.join(__dirname + '/static/index.css'));
 });
 
 app.get(/\/evaluations\/[\w]+$/, async function (req: any, res: any) {
+    res = setCorsOrigin(res);
     const baseURL: string = 'http://' + req.headers.host + '/';
     const id = new URL(req.url ? req.url : "", baseURL).pathname.split('/')[2];
     const result = await new EvaluationHandler().getEvaluation(id);
@@ -51,6 +61,7 @@ app.get(/\/evaluations\/[\w]+$/, async function (req: any, res: any) {
 });
 
 app.get('/evaluations', async function (req: any, res: any) {
+    res = setCorsOrigin(res);
     const resultObject = await new EvaluationHandler().getAllEvaluations(req.header("Cursor"), req.query.page);
     const result = resultObject.response;
     res.statusCode = result.statusCode;
@@ -59,7 +70,5 @@ app.get('/evaluations', async function (req: any, res: any) {
     }
     res.end(result.body);
 });
-
-
 
 app.listen(8080);
