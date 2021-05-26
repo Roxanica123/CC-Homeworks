@@ -7,7 +7,7 @@ export class Created implements HttpActionResult {
     
     constructor(body: string, location:string) {
         this.statusCode = 201;
-        this.body = body;
+        this.body = JSON.stringify({response: body});
         this.redirectLocation = location;
     }
 }

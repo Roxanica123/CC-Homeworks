@@ -1,0 +1,13 @@
+indexes:
+
+- kind: Problem
+  properties:
+  - name: title
+    direction: desc
+
+- kind: Evaluation
+  properties:
+  - name: id
+    direction: asc
+  - name: problemId
+    direction: desc

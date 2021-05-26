@@ -5,6 +5,6 @@ export class ServerError implements HttpActionResult {
     public readonly body: string;
     constructor(body: string) {
         this.statusCode = 500;
-        this.body = body;
+        this.body = JSON.stringify({error: body});
     }
 }

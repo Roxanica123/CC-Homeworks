@@ -46,10 +46,6 @@ app.get(/\/problems\/[\w]+$/, async function (req: any, res: any) {
     res.end(result.body);
 });
 
-app.get('/upload/formstyle', function (req: any, res: any) {
-    res = setCorsOrigin(res);
-    res.sendFile(path.join(__dirname + '/static/index.css'));
-});
 
 app.get(/\/evaluations\/[\w]+$/, async function (req: any, res: any) {
     res = setCorsOrigin(res);

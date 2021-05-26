@@ -13,7 +13,7 @@ export class EvaluationHandler {
             return new Ok(JSON.stringify(result));
         } catch (error) {
             console.log(error);
-            return new ServerError("Could not get the problem!");
+            return new ServerError(JSON.stringify({response: "Could not get the problem!"}));
         }
     }
 

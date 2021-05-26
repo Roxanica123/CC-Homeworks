@@ -5,6 +5,6 @@ export class BadRequest implements HttpActionResult {
     public readonly body: string;
     constructor(body: string) {
         this.statusCode = 400;
-        this.body = body;
+        this.body = JSON.stringify({error: body});
     }
 }

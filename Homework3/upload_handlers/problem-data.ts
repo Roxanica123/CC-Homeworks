@@ -17,7 +17,7 @@ export class ProblemData {
         this.restrictions = requestBody.restrictions ?? null;
         this.example = requestBody.example ?? null;
         this.file = requestBody.file ?? null;
-        this.status = requestBody.file ?? PROBLEM_STATUS.PENDING;
+        this.status = requestBody.status ?? PROBLEM_STATUS.PENDING;
     }
 }
 
