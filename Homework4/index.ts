@@ -1,12 +1,10 @@
 
 import express from "express";
-import dotenv from "dotenv";
 import { checkSchema, validationResult } from "express-validator";
 import { HttpActionResult } from "./action_results";
 import { AuthenticationService, JwtService } from "./services";
 import { loginSchema, registerSchema } from "./validators";
 
-dotenv.config();
 const app = express();
 app.use(express.json())
 

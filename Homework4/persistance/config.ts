@@ -1,7 +1,3 @@
-  
-import dotenv from "dotenv";
-dotenv.config();
-
 export interface CosmosConfig {
   endpoint: string,
   key: string,
