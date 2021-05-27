@@ -1,13 +1,14 @@
 
 import express from "express";
+import dotenv from "dotenv";
 import { checkSchema, validationResult } from "express-validator";
 import { HttpActionResult } from "./action_results";
 import { AuthenticationService, JwtService } from "./services";
 import { loginSchema, registerSchema } from "./validators";
 
+dotenv.config();
 const app = express();
 app.use(express.json())
-
 
 app.post('/token', async (req, res) => {
   const refreshToken = req.body.token
@@ -48,5 +49,12 @@ app.post('/register', checkSchema(registerSchema), async (req: any, res: any) =>
   res.json(response.body);
 })
 
+app.post('/roles', async (req, res) => {
+  const token = req.body.token;
+  if (token == null ) return res.sendStatus(401)
+  const response = new JwtService().getRole(req.body.token);
+  res.statusCode = response.statusCode;
+  res.end(response.body);
+})
 
 app.listen(8080);

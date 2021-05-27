@@ -37,6 +37,18 @@ export class JwtService {
         if (deleted === undefined) return new ServerError("Something went wrong :(");
         return new NoContent(EmptyBody);
     }
+
+    public getRole(token:string): HttpActionResult{
+        try{
+            const result : any  = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET ?? "");
+            return new Ok(JSON.stringify({ role: result.role }));
+        }
+        catch{
+            return new Forbidden(EmptyBody); 
+        }
+
+    }
+
     private generateAccessToken(user: any): string {
         return jwt.sign({
             username: user.username,
