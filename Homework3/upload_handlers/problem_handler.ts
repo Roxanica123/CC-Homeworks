@@ -1,5 +1,5 @@
 import { ProblemData } from ".";
-import { HttpActionResult, Ok, ServerError } from "../action_results";
+import { HttpActionResult, NoContent, Ok, ServerError } from "../action_results";
 import { ProblemRepository } from "../repositories";
 import { ProblemSnippet } from ".";
 import { PROBLEM_STATUS } from "./problem-data";
@@ -43,6 +43,16 @@ export class ProblemHandler {
         }
     }
 
+    async approveProblem(verdict: {approved: boolean}, id:any): Promise<HttpActionResult>{
+        try {
+            const status = verdict.approved === true? PROBLEM_STATUS.ACCEPTED:PROBLEM_STATUS.REJECTED;
+            const result = await this.problemRepository.changeStatus(status, parseInt(id));
+            return new NoContent();
+        } catch (error) {
+            console.log(error);
+            return new ServerError("Could not update the problem status :(");
+        }
+    }
     
     async getProblem(id: string): Promise<HttpActionResult> {
         try {

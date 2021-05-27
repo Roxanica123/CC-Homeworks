@@ -1,4 +1,4 @@
-import { Datastore } from "@google-cloud/datastore";
+import { Datastore, Entity } from "@google-cloud/datastore";
 import { ProblemData, PROBLEM_STATUS } from "../upload_handlers";
 
 export class ProblemRepository {
@@ -32,5 +32,11 @@ export class ProblemRepository {
     const key = this.datastore.key([this.kind, id]);
     const [result] = await this.datastore.get(key);
     return result;
+  }
+  async changeStatus(status :PROBLEM_STATUS, id:number): Promise<any>{
+    const key = this.datastore.key([this.kind, id]);
+    const [entity] : Entity = await this.datastore.get(key);
+    entity["status"] = status;
+    return await this.datastore.update(entity);
   }
 }
