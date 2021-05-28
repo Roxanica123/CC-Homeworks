@@ -38,23 +38,28 @@ export class JwtService {
         return new NoContent(EmptyBody);
     }
 
-    public getRole(token:string): HttpActionResult{
-        try{
-            const result : any  = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET ?? "");
+    public getRole(token: string): HttpActionResult {
+        try {
+            const result: any = jwt.verify(token, process.env.ACCES_TOKEN_PUBLIC_KEY ?? "", { algorithms: ["RS512"] });
             return new Ok(JSON.stringify({ role: result.role }));
         }
-        catch{
-            return new Forbidden(EmptyBody); 
+        catch {
+            return new Forbidden(EmptyBody);
         }
 
     }
 
-    private generateAccessToken(user: any): string {
-        return jwt.sign({
-            username: user.username,
-            email: user.email,
-            role: user.role
-        }, process.env.ACCESS_TOKEN_SECRET ?? "", { expiresIn: '15m' })
+    private generateAccessToken(user: any): any {
+        try {
+            return jwt.sign({
+                username: user.username,
+                email: user.email,
+                role: user.role
+            }, process.env.ACCESS_TOKEN_SECRET ?? "", { expiresIn: '15m', algorithm: "RS512" })
+        }
+        catch (error) {
+            console.log(error);
+        }
     }
     private generateRefreshToken(user: User): string {
         return jwt.sign({
