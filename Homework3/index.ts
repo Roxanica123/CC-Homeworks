@@ -1,4 +1,4 @@
-import express from "express";
+import express, { request } from "express";
 import cors from "cors";
 import multer from "multer";
 import {
@@ -8,6 +8,8 @@ import {
 } from "./upload_handlers";
 import { EvaluationHandler } from "./evaluations_handlers/evaluation_handler";
 import { BadRequest } from "./action_results";
+import { RequestsAuthService } from "./services/requests_auth_service";
+import { ALL, MODERATOR, UserTypes } from "./services/user_roles";
 
 const app = express();
 const upload = multer();
@@ -37,7 +39,8 @@ app.post(
   ]),
   async function (req: any, res: any, err: any) {
     res = setCorsOrigin(res);
-    const response = await new UploadHandler(req).handle();
+    const hasAccess = RequestsAuthService.instance.hasAcces(req, ALL);
+    const response = hasAccess === true ? await new UploadHandler(req).handle() : hasAccess;
     res.statusCode = response.statusCode;
     if (res.statusCode == 201) {
       res.setHeader("Location", req.url + "/" + response.redirectLocation);
@@ -48,18 +51,20 @@ app.post(
 
 app.get("/problems", async function (req: any, res: any) {
   res = setCorsOrigin(res);
-  const result = await new ProblemHandler().getAllProblems(
+  const hasAccess = RequestsAuthService.instance.hasAcces(req, ALL);
+  const result = hasAccess === true ? await new ProblemHandler().getAllProblems(
     PROBLEM_STATUS.ACCEPTED
-  );
+  ) : hasAccess;
   res.statusCode = result.statusCode;
   res.end(result.body);
 });
 
 app.get("/pending", async function (req: any, res: any) {
   res = setCorsOrigin(res);
-  const result = await new ProblemHandler().getAllProblems(
+  let hasAccess = RequestsAuthService.instance.hasAcces(req, MODERATOR)
+  const result = hasAccess === true ? await new ProblemHandler().getAllProblems(
     PROBLEM_STATUS.PENDING
-  );
+  ) : hasAccess;
   res.statusCode = result.statusCode;
   res.end(result.body);
 });
@@ -76,7 +81,8 @@ app.patch(/\/pending\/[\w]+$/, async function (req: any, res: any) {
     res.statusCode = result.statusCode;
     res.end(result.body);
   }
-  const result = await new ProblemHandler().approveProblem(req.body, id);
+  let hasAccess = RequestsAuthService.instance.hasAcces(req, MODERATOR);
+  const result = hasAccess === true ? await new ProblemHandler().approveProblem(req.body, id) : hasAccess;
   res.statusCode = result.statusCode;
   res.end(result.body);
 });
@@ -85,7 +91,8 @@ app.get(/\/problems\/[\w]+$/, async function (req: any, res: any) {
   res = setCorsOrigin(res);
   const baseURL: string = "http://" + req.headers.host + "/";
   const id = new URL(req.url ? req.url : "", baseURL).pathname.split("/")[2];
-  const result = await new ProblemHandler().getProblem(id);
+  let hasAccess = RequestsAuthService.instance.hasAcces(req, ALL)
+  const result = hasAccess === true ? await new ProblemHandler().getProblem(id) : hasAccess;
   res.statusCode = result.statusCode;
   res.end(result.body);
 });
@@ -94,17 +101,19 @@ app.get(/\/evaluations\/[\w]+$/, async function (req: any, res: any) {
   res = setCorsOrigin(res);
   const baseURL: string = "http://" + req.headers.host + "/";
   const id = new URL(req.url ? req.url : "", baseURL).pathname.split("/")[2];
-  const result = await new EvaluationHandler().getEvaluation(id);
+  let hasAccess = RequestsAuthService.instance.hasAcces(req, ALL)
+  const result = hasAccess === true ? await new EvaluationHandler().getEvaluation(id) : hasAccess;
   res.statusCode = result.statusCode;
   res.end(result.body);
 });
 
 app.get("/evaluations", async function (req: any, res: any) {
   res = setCorsOrigin(res);
-  const resultObject = await new EvaluationHandler().getAllEvaluations(
+  let hasAccess = RequestsAuthService.instance.hasAcces(req, ALL)
+  const resultObject: any = hasAccess === true ? await new EvaluationHandler().getAllEvaluations(
     req.header("Cursor"),
     req.query.page
-  );
+  ) : hasAccess;
   const result = resultObject.response;
   res.statusCode = result.statusCode;
   if (res.statusCode == 200 && resultObject.cursor !== undefined) {

@@ -3,11 +3,15 @@ import { EmptyBody, HttpActionResult, NoContent, Ok, ServerError, Unauthorized, 
 import { User, UserData } from "../entities";
 import { AuthenticationService } from ".";
 import { JwtRepository } from "../repositories";
+import { PfxService } from "./pfx_service";
 
 
 export class JwtService {
     private readonly jwtRepository: JwtRepository;
+    private readonly pfxService: PfxService;
+
     constructor() {
+        this.pfxService = new PfxService();
         this.jwtRepository = new JwtRepository();
     }
 
@@ -16,7 +20,7 @@ export class JwtService {
         if (existentUser === undefined) return new ServerError("Something went wrong :(");
         if (existentUser === null) return new Unauthorized(EmptyBody);
 
-        const accessToken = this.generateAccessToken(existentUser);
+        const accessToken = await this.generateAccessToken(existentUser);
         const refreshToken = this.generateRefreshToken(existentUser);
 
         await this.jwtRepository.save(refreshToken, user.email);
@@ -29,7 +33,7 @@ export class JwtService {
         if (existentToken === false) return new Forbidden(EmptyBody);
         const result = jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET ?? "");
         if (typeof (result) === "string") return new Forbidden(EmptyBody);
-        return new Ok(JSON.stringify({ accessToken: this.generateAccessToken(result) }));
+        return new Ok(JSON.stringify({ accessToken: await this.generateAccessToken(result) }));
     }
 
     public async deleteRefreshToken(refreshToken: string): Promise<HttpActionResult> {
@@ -38,9 +42,9 @@ export class JwtService {
         return new NoContent(EmptyBody);
     }
 
-    public getRole(token: string): HttpActionResult {
+    public async getRole(token: string): Promise<HttpActionResult> {
         try {
-            const result: any = jwt.verify(token, process.env.ACCES_TOKEN_PUBLIC_KEY ?? "", { algorithms: ["RS512"] });
+            const result: any = jwt.verify(token, await this.pfxService.cert(), { algorithms: ['RS512'] });
             return new Ok(JSON.stringify({ role: result.role }));
         }
         catch {
@@ -49,17 +53,13 @@ export class JwtService {
 
     }
 
-    private generateAccessToken(user: any): any {
-        try {
-            return jwt.sign({
-                username: user.username,
-                email: user.email,
-                role: user.role
-            }, process.env.ACCESS_TOKEN_SECRET ?? "", { expiresIn: '15m', algorithm: "RS512" })
-        }
-        catch (error) {
-            console.log(error);
-        }
+    private async generateAccessToken(user: any): Promise<string> {
+        const key = await this.pfxService.key();
+        return jwt.sign({
+            username: user.username,
+            email: user.email,
+            role: user.role
+        }, key, { expiresIn: '15m', algorithm: "RS512" })
     }
     private generateRefreshToken(user: User): string {
         return jwt.sign({
