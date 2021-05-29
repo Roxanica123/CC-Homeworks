@@ -70,4 +70,28 @@ export class ProblemHandler {
             return new ServerError("Could not get the problem!");
         }
     }
+    async getProblemIndications(id:string): Promise<HttpActionResult>{
+        try {
+            const result = await this.problemRepository.getProblemById(parseInt(id));
+            return new Ok(JSON.stringify({
+                indications: result.indications,
+                id: id
+            }));
+        } catch (error) {
+            console.log(error);
+            return new ServerError("Could not get the problem's indications!");
+        }   
+    }
+    async getProblemSolution(id:string): Promise<HttpActionResult>{
+        try {
+            const result = await this.problemRepository.getProblemById(parseInt(id));
+            return new Ok(JSON.stringify({
+                solution: result.solution,
+                id: id
+            }));
+        } catch (error) {
+            console.log(error);
+            return new ServerError("Could not get the problem's solution!");
+        }   
+    }
 }
