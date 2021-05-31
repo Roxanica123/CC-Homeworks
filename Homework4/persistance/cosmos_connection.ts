@@ -46,6 +46,16 @@ export class CosmosConnection implements DatabaseConnection {
             return undefined;
         }
     }
+    public async update(item: any, containerId: string): Promise<any | undefined> {
+        try {
+            const { resource: updatedItem } = await this.database.container(containerId).item(item.id, item.email).replace(item);
+            return updatedItem;
+
+        } catch (e) {
+            console.log(e);
+            return undefined;
+        }
+    }
     public static getInstance() {
         if (CosmosConnection.instance === null) {
             CosmosConnection.instance = new CosmosConnection();

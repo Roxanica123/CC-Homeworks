@@ -1,4 +1,5 @@
-import { User, UserData } from "../entities";
+import { EmptyBody, NoContent, ServerError } from "../action_results";
+import { DatabaseUser, User, UserData } from "../entities";
 import { CosmosConnection, DatabaseConnection, Query } from "../persistance";
 
 export class UserRepository {
@@ -22,7 +23,7 @@ export class UserRepository {
         const result: User | undefined = await this.connection.insert(user, this.containerId);
         return result;
     }
-    public async findByEmail(userEmail: string): Promise<User | undefined | null> {
+    public async findByEmail(userEmail: string): Promise<DatabaseUser | undefined | null> {
         const query: Query = {
             query: `SELECT * from c WHERE c.email = "${userEmail}"`
         };
@@ -30,5 +31,10 @@ export class UserRepository {
         if (result === undefined) return undefined;
         if (result.length === 0) return null;
         return result[0];
+    }
+    public async update(user: DatabaseUser) {
+        const updatedItem = await this.connection.update(user, this.containerId);
+        if (updatedItem === undefined) return new ServerError(EmptyBody);
+        return new NoContent();
     }
 }

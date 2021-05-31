@@ -1,6 +1,6 @@
 import crypto from "crypto"
 import { BadRequest, Created, EmptyBody, HttpActionResult, ServerError, Unauthorized } from "../action_results";
-import { User, UserData, UserTypes } from "../entities";
+import { DatabaseUser, User, UserData, UserTypes } from "../entities";
 import { UserRepository } from "../repositories";
 
 export class AuthenticationService {
@@ -35,6 +35,13 @@ export class AuthenticationService {
     }
     private getPasswordHash(password: string) {
         return crypto.createHash("sha256").update(password).digest("hex");
+    }
+    public async changeUserRole(email: string, type:UserTypes): Promise<HttpActionResult> {
+        const existentUser: DatabaseUser | undefined | null = await this.userRepository.findByEmail(email);
+        if (existentUser == null) return new BadRequest(EmptyBody);
+        if (existentUser == undefined) return new ServerError(EmptyBody);
+        existentUser.role = type;
+        return await this.userRepository.update(existentUser);
     }
 
 }

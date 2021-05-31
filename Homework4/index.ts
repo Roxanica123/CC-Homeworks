@@ -1,8 +1,10 @@
 
-import express from "express";
+import express, { response } from "express";
 import { checkSchema, validationResult } from "express-validator";
-import { HttpActionResult } from "./action_results";
+import { BadRequest, EmptyBody, HttpActionResult } from "./action_results";
+import { UserTypes } from "./entities";
 import { AuthenticationService, JwtService } from "./services";
+import { RequestsValidationService } from "./services/request_validation_service";
 import { loginSchema, registerSchema } from "./validators";
 
 const app = express();
@@ -49,10 +51,41 @@ app.post('/register', checkSchema(registerSchema), async (req: any, res: any) =>
 
 app.post('/roles', async (req, res) => {
   const token = req.body.token;
-  if (token == null ) return res.sendStatus(401)
+  if (token == null) return res.sendStatus(401)
   const response = await new JwtService().getRole(req.body.token);
   res.statusCode = response.statusCode;
   res.end(response.body);
 })
 
+app.patch('/premium', async (req, res) => {
+  let hasAccess = await RequestsValidationService.instance.hasAcces(req, [UserTypes.PAYMENTS_SERVICE]);
+  if (req.body.email === undefined) {
+    hasAccess = new BadRequest(EmptyBody);
+  }
+  const response: HttpActionResult = hasAccess === true ?
+    await new AuthenticationService().changeUserRole(req.body.email, UserTypes.PREMIUM) : hasAccess;
+  res.statusCode = response.statusCode;
+  res.end(response.body);
+})
+
+app.patch('/basic', async (req, res) => {
+  let hasAccess = await RequestsValidationService.instance.hasAcces(req, [UserTypes.PAYMENTS_SERVICE]);
+  if (req.body.email === undefined) {
+    hasAccess = new BadRequest(EmptyBody);
+  }
+  const response: HttpActionResult = hasAccess === true ?
+    await new AuthenticationService().changeUserRole(req.body.email, UserTypes.BASIC) : hasAccess;
+  res.statusCode = response.statusCode;
+  res.end(response.body);
+})
+app.patch('/moderator', async (req, res) => {
+  let hasAccess = await RequestsValidationService.instance.hasAcces(req, [UserTypes.ADMIN]);
+  if (req.body.email === undefined) {
+    hasAccess = new BadRequest(EmptyBody);
+  }
+  const response: HttpActionResult = hasAccess === true ?
+    await new AuthenticationService().changeUserRole(req.body.email, UserTypes.MODERATOR) : hasAccess;
+  res.statusCode = response.statusCode;
+  res.end(response.body);
+})
 app.listen(8080);
