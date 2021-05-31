@@ -5,4 +5,6 @@ export interface Problem {
     example: string;
     id: string;
     file: string;
+    indications: string;
+    solution: string;
 }

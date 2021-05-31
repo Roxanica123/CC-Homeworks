@@ -9,7 +9,7 @@ import {
 import { EvaluationHandler } from "./evaluations_handlers/evaluation_handler";
 import { BadRequest } from "./action_results";
 import { RequestsAuthService } from "./services/requests_auth_service";
-import { ALL, MODERATOR, UserTypes } from "./services/user_roles";
+import { ALL, MODERATOR, PREMIUM, UserTypes } from "./services/user_roles";
 
 const app = express();
 const upload = multer();
@@ -96,6 +96,27 @@ app.get(/\/problems\/[\w]+$/, async function (req: any, res: any) {
   res.statusCode = result.statusCode;
   res.end(result.body);
 });
+
+app.get(/\/problems\/[\w]+\/indications$/, async function (req: any, res: any) {
+  res = setCorsOrigin(res);
+  const baseURL: string = "http://" + req.headers.host + "/";
+  const id = new URL(req.url ? req.url : "", baseURL).pathname.split("/")[2];
+  let hasAccess = RequestsAuthService.instance.hasAcces(req, PREMIUM)
+  const result = hasAccess === true ? await new ProblemHandler().getProblemIndications(id) : hasAccess;
+  res.statusCode = result.statusCode;
+  res.end(result.body);
+});
+
+app.get(/\/problems\/[\w]+\/solution$/, async function (req: any, res: any) {
+  res = setCorsOrigin(res);
+  const baseURL: string = "http://" + req.headers.host + "/";
+  const id = new URL(req.url ? req.url : "", baseURL).pathname.split("/")[2];
+  let hasAccess = RequestsAuthService.instance.hasAcces(req, PREMIUM)
+  const result = hasAccess === true ? await new ProblemHandler().getProblemSolution(id) : hasAccess;
+  res.statusCode = result.statusCode;
+  res.end(result.body);
+});
+
 
 app.get(/\/evaluations\/[\w]+$/, async function (req: any, res: any) {
   res = setCorsOrigin(res);
