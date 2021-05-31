@@ -75,7 +75,8 @@ export class ProblemHandler {
             const result = await this.problemRepository.getProblemById(parseInt(id));
             return new Ok(JSON.stringify({
                 indications: result.indications,
-                id: id
+                id: id,
+                title: result.title
             }));
         } catch (error) {
             console.log(error);
@@ -87,7 +88,8 @@ export class ProblemHandler {
             const result = await this.problemRepository.getProblemById(parseInt(id));
             return new Ok(JSON.stringify({
                 solution: result.solution,
-                id: id
+                id: id,
+                title: result.title
             }));
         } catch (error) {
             console.log(error);
