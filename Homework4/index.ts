@@ -9,6 +9,10 @@ import { loginSchema, registerSchema } from "./validators";
 
 const app = express();
 app.use(express.json())
+app.get('/', async(req, res)=>{
+  res.statusCode = 200;
+  res.end("Pump IT Up Authentication microservive");
+})
 
 app.post('/token', async (req, res) => {
   const refreshToken = req.body.token
