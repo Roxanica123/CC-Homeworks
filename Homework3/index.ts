@@ -59,6 +59,13 @@ app.get("/problems", async function (req: any, res: any) {
   res.end(result.body);
 });
 
+
+app.get("/", async function (req: any, res: any) {
+  res = setCorsOrigin(res);
+  res.statusCode = 200;
+  res.end("Pump IT Up Problems microservice");
+});
+
 app.get("/pending", async function (req: any, res: any) {
   res = setCorsOrigin(res);
   let hasAccess = RequestsAuthService.instance.hasAcces(req, MODERATOR)
