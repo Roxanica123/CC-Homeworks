@@ -39,5 +39,4 @@ export class PfxService {
         }
         return this.publicCert;
     }
-
 }

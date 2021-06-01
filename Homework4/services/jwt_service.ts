@@ -1,10 +1,11 @@
 import jwt from "jsonwebtoken"
-import { EmptyBody, HttpActionResult, NoContent, Ok, ServerError, Unauthorized, Forbidden } from "../action_results";
-import { User, UserData } from "../entities";
+
+import { PfxService } from "./pfx_service";
 import { AuthenticationService } from ".";
 import { JwtRepository } from "../repositories";
-import { PfxService } from "./pfx_service";
 
+import { EmptyBody, HttpActionResult, NoContent, Ok, ServerError, Unauthorized, Forbidden } from "../action_results";
+import { User, UserData } from "../entities";
 
 export class JwtService {
     private readonly jwtRepository: JwtRepository;
@@ -17,8 +18,12 @@ export class JwtService {
 
     public async getTokens(user: UserData): Promise<HttpActionResult> {
         const existentUser: User | null | undefined = await new AuthenticationService().authenticateUser(user);
-        if (existentUser === undefined) return new ServerError("Something went wrong :(");
-        if (existentUser === null) return new Unauthorized(EmptyBody);
+        if (existentUser === undefined) {
+            return new ServerError("Something went wrong :(");
+        }
+        if (existentUser === null) {
+            return new Unauthorized(EmptyBody);
+        }
 
         const accessToken = await this.generateAccessToken(existentUser);
         const refreshToken = this.generateRefreshToken(existentUser);
@@ -29,16 +34,25 @@ export class JwtService {
     }
     public async getAccessToken(refreshToken: string): Promise<HttpActionResult> {
         const existentToken: boolean | undefined = await this.jwtRepository.exists(refreshToken);
-        if (existentToken === undefined) return new ServerError("Something went wrong :(");
-        if (existentToken === false) return new Forbidden(EmptyBody);
+        if (existentToken === undefined) {
+            return new ServerError("Something went wrong :(");
+        }
+        if (existentToken === false) {
+            return new Forbidden(EmptyBody);
+        }
+
         const result = jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET ?? "");
-        if (typeof (result) === "string") return new Forbidden(EmptyBody);
+        if (typeof (result) === "string") {
+            return new Forbidden(EmptyBody);
+        }
         return new Ok(JSON.stringify({ accessToken: await this.generateAccessToken(result) }));
     }
 
     public async deleteRefreshToken(refreshToken: string): Promise<HttpActionResult> {
         const deleted = await this.jwtRepository.delete(refreshToken);
-        if (deleted === undefined) return new ServerError("Something went wrong :(");
+        if (deleted === undefined) {
+            return new ServerError("Something went wrong :(");
+        }
         return new NoContent(EmptyBody);
     }
 
@@ -50,7 +64,6 @@ export class JwtService {
         catch {
             return new Forbidden(EmptyBody);
         }
-
     }
 
     private async generateAccessToken(user: any): Promise<string> {

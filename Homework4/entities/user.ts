@@ -5,6 +5,12 @@ export interface User {
     role: string;
 }
 
+export interface UserProfile {
+    email: string;
+    username: string;
+    role: string;
+}
+
 export interface DatabaseUser {
     email: string;
     passwordHash: string;

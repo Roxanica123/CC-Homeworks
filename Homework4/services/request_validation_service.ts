@@ -1,8 +1,10 @@
 import jwt from "jsonwebtoken"
-import { PfxService } from ".";
-import { EmptyBody, Forbidden, HttpActionResult, Unauthorized } from "../action_results";
-import { UserTypes } from "../entities";
 
+import { PfxService } from ".";
+
+import { EmptyBody, Forbidden, HttpActionResult, Unauthorized } from "../action_results";
+
+import { UserTypes } from "../entities";
 
 export class RequestsValidationService {
     private readonly pfxService : PfxService;
