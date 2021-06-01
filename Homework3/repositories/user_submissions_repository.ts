@@ -16,6 +16,10 @@ export class UserSubmissionsRepository {
             .filter('email', '=', email);
         
         const results = await this.datastore.runQuery(query);
+        if (results[0].length == 0) {
+            return null;
+        }
+
         const userSubmissions: UserSubmissions = {
             id: results[0][0].id,
             email: results[0][0].email,

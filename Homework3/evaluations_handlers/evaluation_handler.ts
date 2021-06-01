@@ -1,7 +1,7 @@
 import { EvaluationRepository } from "../repositories/evaluation_repository";
 import { UserSubmissionsRepository } from "../repositories/user_submissions_repository";
 
-import { BadRequest, HttpActionResult, NotFound, Ok, ServerError } from "../action_results";
+import { BadRequest, HttpActionResult, Ok, ServerError } from "../action_results";
 
 import { UserSubmissions } from "./userSubmissions";
 import { Evaluation } from "./evaluation";
@@ -58,7 +58,7 @@ export class EvaluationHandler {
             let userSubmissionsObj: UserSubmissions | null = await this.userSubmissionsRepository.getUserSubmissions(email);
             if (!userSubmissionsObj) {
                 return {
-                    response: new NotFound("Invalid user email!")
+                    response: new Ok(JSON.stringify([]))
                 };
             }
 
