@@ -1,7 +1,7 @@
 {
   "name": "cloud-homework2-problems-upload",
   "description": "God have mercy on out pockets",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "Roxanica",
   "engines": {
     "node": ">=12"
@@ -15,6 +15,7 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
+    "morgan": "^1.10.0",
     "multer": "^1.4.2",
     "pem": "^1.14.4"
   },

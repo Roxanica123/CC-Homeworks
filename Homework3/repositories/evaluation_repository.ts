@@ -1,10 +1,11 @@
 import { Datastore } from '@google-cloud/datastore';
-import { Evaluation } from '../evaluations_handlers/evaluation';
 
+import { Evaluation } from '../evaluations_handlers/evaluation';
 
 export class EvaluationRepository {
     private readonly datastore;
     private readonly kind = "Evaluation";
+
     constructor() {
         this.datastore = new Datastore();
     }
@@ -28,16 +29,38 @@ export class EvaluationRepository {
         const entities = results[0];
         const info = results[1];
         let endCursor = undefined;
-        if (info.moreResults !== Datastore.NO_MORE_RESULTS)
+        if (info.moreResults !== Datastore.NO_MORE_RESULTS) {
             endCursor = info.endCursor;
+        }
         return {
             entities: entities.map(item => {
                 let copy: Evaluation = item;
-                copy.id = item[this.getDatastoreKeySymbol()].id; return copy;
+                copy.id = item[this.getDatastoreKeySymbol()].id;
+                return copy;
             }),
             endCursor: endCursor
         }
     }
+    
+    async getEvaluations(evaluationIds: string[]): Promise<Evaluation[]> {
+        let evaluations: Evaluation[] = [];
+        for (let evaluationId of evaluationIds) {
+            let id: number;
+            try {
+                id = parseInt(evaluationId);
+            } catch (e) {
+                continue;
+            }
+            const key = this.datastore.key([this.kind, id]);
+            const [ evaluation ] = await this.datastore.get(key);
+            if (!evaluation) {
+                continue;
+            }
+            evaluations.push(evaluation);
+        }
+        return evaluations;
+    }
+
     async getEvaluationById(id: number): Promise<Evaluation> {
         const key = this.datastore.key([this.kind, id]);
         const [result] = await this.datastore.get(key);
