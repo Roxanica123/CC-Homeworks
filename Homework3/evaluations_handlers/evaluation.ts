@@ -5,5 +5,6 @@ export interface Evaluation {
     submissionDateTime: Date,
     problemTitle: string,
     verdict: string,
-    user: string
+    user: string,
+    userEmail: string
 }

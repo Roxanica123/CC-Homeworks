@@ -56,6 +56,7 @@ export class EvaluationRepository {
             if (!evaluation) {
                 continue;
             }
+            evaluation.id = evaluationId;
             evaluations.push(evaluation);
         }
         return evaluations;
