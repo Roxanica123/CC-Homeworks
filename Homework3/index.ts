@@ -126,7 +126,7 @@ app.get(
 );
 
 app.get(
-  "/problems/:problemId/indications",
+  "/problems/:problemId/solution",
   async function (req: any, res: any) {
     res = setCorsOrigin(res);
     const id = req.params.problemId;
